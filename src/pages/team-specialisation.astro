@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const groups = [
+  { label: 'Bookkeeping', tools: 'Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry' },
+  { label: 'Year-End Accounts & Tax', tools: 'TaxCalc, IRIS, CCH' },
+  { label: 'Practice Management', tools: 'BrightManager' },
+  { label: 'Company Secretarial & Compliance', tools: 'Inform Direct, AML screening tools' },
+  { label: 'Everyday Collaboration', tools: 'Microsoft Outlook, Teams, Excel, Word' },
+];
+---
+<BaseLayout
+  title="Software & Systems Our Team Works In"
+  description="Hands-on experience across the bookkeeping, tax, practice management and compliance software UK accountancy practices actually use."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Team Specialisation</p>
+      <h1>What Our Team Specialises In</h1>
+      <p class="lead">
+        Our team isn't just trained on accounting principles — they're hands-on experienced across
+        the platforms UK practices actually use, so there's no learning curve when we join your workflow.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid grid--2">
+        {groups.map((g) => (
+          <div class="card">
+            <h3>{g.label}</h3>
+            <p>{g.tools}</p>
+          </div>
+        ))}
+      </div>
+      <p class="lead" style="margin-top: var(--space-3);">
+        Beyond day-to-day processing, we also help design and automate working papers to match your
+        practice's own templates and requirements — cutting down manual rework and keeping files
+        consistent across your whole team.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBand headline="Want to See How This Would Work With Your Systems?" />
+    </div>
+  </section>
+</BaseLayout>

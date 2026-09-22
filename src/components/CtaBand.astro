@@ -1,0 +1,14 @@
+---
+interface Props {
+  headline: string;
+  body?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const { headline, body, ctaLabel = 'Book a Free Consultation', ctaHref = '/contact' } = Astro.props;
+---
+<div class="cta-band">
+  <h2>{headline}</h2>
+  {body && <p>{body}</p>}
+  <a class="btn btn--primary" href={ctaHref}>{ctaLabel}</a>
+</div>

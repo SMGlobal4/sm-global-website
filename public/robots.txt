@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smglobalaccounting.co.in/sitemap-index.xml

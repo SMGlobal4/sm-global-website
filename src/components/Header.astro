@@ -1,0 +1,78 @@
+---
+import { PRIMARY_NAV } from '../site.config';
+const { pathname } = Astro.url;
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand">SM Global <span>Accounting Services</span></a>
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul>
+        {PRIMARY_NAV.map((item) => (
+          <li>
+            <a href={item.href} aria-current={pathname === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a class="btn btn--primary site-header__cta" href="/contact">Book a Free Consultation</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+  .site-header__brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+  .site-header__brand span {
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+  .site-header__nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+  }
+  .site-header__nav a {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--color-text);
+  }
+  .site-header__nav a:hover,
+  .site-header__nav a[aria-current='page'] {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .site-header__cta {
+    white-space: nowrap;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 900px) {
+    .site-header__inner { flex-wrap: wrap; }
+    .site-header__nav ul { gap: var(--space-2); }
+  }
+</style>

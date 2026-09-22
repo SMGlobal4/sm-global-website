@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const sectors = [
+  { name: 'Media & Entertainment', note: 'Production, talent and rights-related client work.' },
+  { name: 'Sport & Fitness', note: 'Clubs, practitioners and related SME accounts.' },
+  { name: 'Property & Real Estate', note: 'Rental income accounts, capital gains considerations, and portfolio bookkeeping.' },
+  { name: 'Construction & Trades', note: 'CIS-aware bookkeeping and compliance.' },
+  { name: 'Beauty & Retail', note: 'Day-to-day bookkeeping and compliance for small and medium businesses.' },
+  { name: 'Financial & Professional Services', note: 'Compliance-literate support for firms operating under their own regulatory obligations.' },
+];
+---
+<BaseLayout
+  title="Industries We Support"
+  description="Experience across a genuine range of UK client sectors, built through full-lifecycle work — onboarding, AML/CDD, bookkeeping, statutory accounts and filing — for a leading UK accountancy startup firm."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Industries We Serve</p>
+      <h1>Experience Across a Genuine Range of UK Client Types</h1>
+      <p class="lead">
+        This isn't a generic list. It reflects the actual sector spread of client work we've handled
+        end-to-end — onboarding, AML/CDD, bookkeeping, statutory accounts, and filing — for a leading
+        UK accountancy startup firm.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="grid grid--3">
+        {sectors.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p>{s.note}</p>
+          </div>
+        ))}
+      </div>
+      <p class="lead" style="margin-top: var(--space-3);">…and a range of other SME sectors.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBand
+        headline="Work With Clients in a Different Sector?"
+        body="Tell us more about your client base and we'll confirm whether it's a good fit."
+      />
+    </div>
+  </section>
+</BaseLayout>

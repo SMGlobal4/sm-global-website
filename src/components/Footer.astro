@@ -1,0 +1,64 @@
+---
+import { FOOTER_NAV, SITE } from '../site.config';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="site-footer__brand">SM Global Accounting Services</p>
+      <p class="site-footer__tagline">Outsourced bookkeeping, statutory accounts and tax support for UK accountancy practices.</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        {FOOTER_NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="site-footer__contact">
+      <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      <p>{SITE.phone}</p>
+      <p>{SITE.address}</p>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>&copy; {year} SM Global Accounting Services. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-primary-dark);
+    color: #cfe1de;
+    margin-top: var(--space-5);
+  }
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-3);
+  }
+  .site-footer__brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .site-footer__tagline { color: #a9c4bf; margin-bottom: 0; }
+  .site-footer nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer nav a { color: #cfe1de; }
+  .site-footer nav a:hover { color: #fff; }
+  .site-footer__contact p { margin: 0 0 0.4rem; color: #cfe1de; }
+  .site-footer__contact a { color: #cfe1de; }
+  .site-footer__bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.85rem;
+    color: #8fada7;
+  }
+  .site-footer__bottom p { margin: 0; }
+</style>

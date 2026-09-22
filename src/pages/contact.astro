@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../site.config';
+---
+<BaseLayout
+  title="Contact SM Global Accounting Services"
+  description="Book a free consultation or get in touch to find out how outsourcing could work for your UK accountancy practice."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Contact Us</p>
+      <h1>Let's Talk About Your Workload</h1>
+      <p class="lead">
+        Book a free consultation and we'll walk you through exactly how this would work for your
+        practice — no commitment required.
+      </p>
+
+      <div class="grid grid--2" style="margin-top: var(--space-3); align-items: start;">
+        <div class="card">
+          <h3>Contact Details</h3>
+          <p>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+          <p>Phone: {SITE.phone}</p>
+          <p>Website: <a href={SITE.domain}>{SITE.domain.replace('https://', '')}</a></p>
+          <p>Office: {SITE.address}</p>
+          <p style="margin-top: var(--space-2);">We typically respond within one business day.</p>
+        </div>
+        <div class="card">
+          <h3>Get in Touch</h3>
+          <p>
+            A contact form isn't wired up yet — for now, email us directly with:
+          </p>
+          <ul>
+            <li>Your name and practice name</li>
+            <li>What you're looking for help with (bookkeeping, VAT, year-end accounts, tax, payroll, or not sure yet)</li>
+            <li>A phone number, if you'd like a call back</li>
+          </ul>
+          <a class="btn btn--primary" href={`mailto:${SITE.email}`}>Email Us</a>
+        </div>
+      </div>
+
+      <p class="placeholder-note" style="margin-top: var(--space-3);">
+        Phone number and office address are still placeholders — see <code>LAUNCH_CHECKLIST.md</code>.
+        A proper contact form and booking calendar link should replace the plain mailto button before launch.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
