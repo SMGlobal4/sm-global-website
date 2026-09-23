@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+<BaseLayout
+  title="Client Testimonials | SM Global Accounting Services"
+  description="What UK accountancy practices say about working with SM Global Accounting Services."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Client Testimonials</p>
+      <h1>Trusted by Practices Like Yours</h1>
+      <p class="lead">
+        We'd rather show you nothing than show you something we made up. This page will carry real
+        feedback from the UK practices we work with — once we have it, and once they've agreed to
+        being quoted.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="placeholder-note">
+        No testimonials are published here yet. We already run the full client lifecycle — onboarding,
+        AML/CDD, bookkeeping, statutory accounts and filing — for a leading UK accountancy startup
+        firm, but we haven't yet asked for a quotable, attributable testimonial from them. Once a
+        practice gives permission to be named (or quoted anonymously by region/practice type), add it
+        here. Do not fabricate a quote or a case study to fill this page in the meantime.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBand
+        headline="Curious What This Would Look Like for Your Practice?"
+        body="Book a free consultation and we'll talk through where extra capacity would help most."
+      />
+    </div>
+  </section>
+</BaseLayout>

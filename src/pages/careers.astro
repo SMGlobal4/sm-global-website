@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IconBadge from '../components/IconBadge.astro';
+import { SITE } from '../site.config';
+---
+<BaseLayout
+  title="Careers at SM Global Accounting Services"
+  description="Join a team supporting UK accountancy practices — real client work, UK compliance training, and a clear path to progress."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Careers</p>
+      <h1>Build a Career Working With UK Accountancy Practices</h1>
+      <p class="lead">
+        We're a small, hands-on team — every hire works on real UK client files from early on, not
+        simulated training exercises.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Why Work Here</h2>
+      <div class="grid grid--3" style="margin-top: var(--space-3);">
+        <div class="card">
+          <IconBadge name="briefcase" />
+          <h3>Real UK client exposure</h3>
+          <p>You're working inside actual UK accountancy practice files, under our current engagement, from day one — not a simulated dataset.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="document" />
+          <h3>Structured training</h3>
+          <p>UK GAAP (FRS 102 Section 1A and FRS 105), Making Tax Digital, and hands-on time across the software our team uses — Xero, QuickBooks, IRIS, CCH, TaxCalc and more.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="users" />
+          <h3>A clear path to progress</h3>
+          <p>We're a lean team built around accountability — see <a href="/team-structure">Team Structure</a> — with room to grow from preparation work into senior review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Open Roles</h2>
+      <p class="lead">
+        We don't have specific open roles listed right now, but we're always happy to hear from
+        experienced bookkeepers and accountants who want to work on UK client files.
+      </p>
+      <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Interest in working at SM Global Accounting Services')}`}>
+        Send Us Your CV
+      </a>
+      <p class="placeholder-note" style="margin-top: var(--space-3); max-width: 640px;">
+        Currently routed to the general enquiries inbox. Consider a dedicated careers@ alias once
+        hiring volume warrants it, and replace this section with real listed vacancies as soon as
+        they exist — see <code>LAUNCH_CHECKLIST.md</code>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

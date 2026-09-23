@@ -1,0 +1,69 @@
+{
+  "categories": [
+    {
+      "category": "Working With Us",
+      "items": [
+        {
+          "q": "What's the difference between your three work modules?",
+          "a": "FTE gives you a dedicated team member working exclusively on your practice; Pay As You Go is flexible, task-based support with no minimum commitment; Portfolio Management hands over full ownership of a client portfolio end-to-end."
+        },
+        {
+          "q": "What if I only have occasional overflow work?",
+          "a": "Our Pay As You Go module is built for exactly that — you only pay for the work you send us, with no minimum commitment and no fixed monthly cost."
+        },
+        {
+          "q": "What does onboarding look like?",
+          "a": "Once you've chosen a module, we agree access to your systems and priorities with your Engagement Lead, then begin work under your supervision while the team gets up to speed on your specific processes."
+        },
+        {
+          "q": "Will you just follow our existing process, or suggest changes?",
+          "a": "Both, depending on what's already working. We start by understanding how you currently do things, and if we think a different approach would be more efficient, we'll suggest it — but the decision to change anything is always yours."
+        },
+        {
+          "q": "Do you work directly with our clients, or only with us?",
+          "a": "We work entirely behind the scenes, under your practice's own brand — we don't contact your end clients directly unless you specifically ask us to for a particular piece of work."
+        },
+        {
+          "q": "What happens if we're not happy with a piece of work?",
+          "a": "Every file already goes through an independent Quality Review check before it reaches you. If something still isn't right, tell your Engagement Lead and we'll correct it at no extra cost, reviewed again before it comes back to you."
+        }
+      ]
+    },
+    {
+      "category": "Data & Security",
+      "items": [
+        {
+          "q": "How is my data kept secure?",
+          "a": "Your data never leaves your own systems — our team logs in remotely through encrypted, secure connections and works directly inside your existing software. See our Data Security page for the full picture."
+        },
+        {
+          "q": "Are you GDPR compliant?",
+          "a": "Yes — our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted."
+        },
+        {
+          "q": "How do you keep up with changing UK compliance rules, software and best practice?",
+          "a": "We treat it as an ongoing part of the job, not a one-off. Rules, software and best practice all keep moving, so we keep learning and adapting rather than sticking to one fixed way of doing things."
+        }
+      ]
+    },
+    {
+      "category": "Pricing & Team",
+      "items": [
+        {
+          "q": "How is pricing structured?",
+          "a": "Pricing depends on the module: FTE is a fixed monthly rate per dedicated team member, Pay As You Go is priced per task or per hour, and Portfolio Management is scoped to the size and complexity of the portfolio handed over. We'll give you an exact figure once we understand your workload — book a free consultation for a personalised quote.",
+          "placeholder": true
+        },
+        {
+          "q": "How quickly can a new team member start?",
+          "a": "Once the engagement model is agreed and access is set up, we can typically have someone working on straightforward bookkeeping within a couple of weeks — more complex handovers, or work needing deeper training on your specific processes, can take a little longer.",
+          "placeholder": true
+        },
+        {
+          "q": "What software do you work in?",
+          "a": "Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry, TaxCalc, IRIS, CCH, and BrightManager, among others."
+        }
+      ]
+    }
+  ]
+}

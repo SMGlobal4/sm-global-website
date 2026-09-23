@@ -1,6 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../site.config';
+
+// Real, working submission via FormSubmit.co (https://formsubmit.co) — no
+// backend or account of our own required; it forwards submissions straight
+// to SITE.email. IMPORTANT one-time step: the first submission ever sent
+// triggers an activation email from FormSubmit to SITE.email — someone needs
+// to open that email and click "Activate" or every submission after it will
+// silently fail to arrive. See LAUNCH_CHECKLIST.md.
+const formAction = `https://formsubmit.co/${SITE.email}`;
+const sent = Astro.url.searchParams.get('sent') === 'true';
 ---
 <BaseLayout
   title="Contact SM Global Accounting Services"
@@ -15,32 +24,75 @@ import { SITE } from '../site.config';
         practice — no commitment required.
       </p>
 
+      {sent && (
+        <p class="form-success" style="margin-top: var(--space-3);">
+          Thanks — your message is on its way. We typically respond within one business day.
+        </p>
+      )}
+
+      <h2 class="visually-hidden">Ways to Reach Us</h2>
       <div class="grid grid--2" style="margin-top: var(--space-3); align-items: start;">
         <div class="card">
           <h3>Contact Details</h3>
           <p>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+          <p>General enquiries: <a href={`mailto:${SITE.emailInfo}`}>{SITE.emailInfo}</a></p>
           <p>Phone: {SITE.phone}</p>
           <p>Website: <a href={SITE.domain}>{SITE.domain.replace('https://', '')}</a></p>
           <p>Office: {SITE.address}</p>
           <p style="margin-top: var(--space-2);">We typically respond within one business day.</p>
         </div>
         <div class="card">
-          <h3>Get in Touch</h3>
-          <p>
-            A contact form isn't wired up yet — for now, email us directly with:
-          </p>
-          <ul>
-            <li>Your name and practice name</li>
-            <li>What you're looking for help with (bookkeeping, VAT, year-end accounts, tax, payroll, or not sure yet)</li>
-            <li>A phone number, if you'd like a call back</li>
-          </ul>
-          <a class="btn btn--primary" href={`mailto:${SITE.email}`}>Email Us</a>
+          <h3>Send Us a Message</h3>
+          <form action={formAction} method="POST">
+            <input type="hidden" name="_subject" value="New enquiry from smglobalaccounting.co.in" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value={`${SITE.domain}/contact?sent=true`} />
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="_honey">Leave this field empty</label>
+              <input type="text" id="_honey" name="_honey" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-field">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="Name" required />
+            </div>
+            <div class="form-field">
+              <label for="practice">Practice / firm name</label>
+              <input type="text" id="practice" name="Practice name" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone (optional, if you'd like a call back)</label>
+              <input type="tel" id="phone" name="Phone" />
+            </div>
+            <div class="form-field">
+              <label for="need">What do you need help with?</label>
+              <select id="need" name="Looking for help with">
+                <option>Bookkeeping</option>
+                <option>VAT</option>
+                <option>Year-end accounts</option>
+                <option>Personal tax / Self Assessment</option>
+                <option>Payroll</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="Message" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">Send Message</button>
+          </form>
         </div>
       </div>
 
       <p class="placeholder-note" style="margin-top: var(--space-3);">
-        Phone number and office address are still placeholders — see <code>LAUNCH_CHECKLIST.md</code>.
-        A proper contact form and booking calendar link should replace the plain mailto button before launch.
+        A dedicated booking calendar link (e.g. Calendly or TidyCal) should still replace "Book a Free
+        Consultation" linking to this page, once the practice sets one up — see
+        <code>LAUNCH_CHECKLIST.md</code>.
       </p>
     </div>
   </section>

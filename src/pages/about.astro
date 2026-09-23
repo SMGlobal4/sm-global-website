@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
   title="About SM Global Accounting Services"
@@ -22,18 +23,26 @@ import CtaBand from '../components/CtaBand.astro';
   <section class="section section--alt">
     <div class="container">
       <h2>What We Believe</h2>
-      <div class="grid grid--3" style="margin-top: var(--space-3);">
+      <div class="grid grid--2" style="margin-top: var(--space-3);">
         <div class="card">
+          <IconBadge name="lock" />
           <h3>Your data is not ours to risk</h3>
           <p>Every process is built around keeping client data inside your own systems.</p>
         </div>
         <div class="card">
+          <IconBadge name="shield" />
           <h3>Outsourcing should feel invisible to your clients</h3>
           <p>We work under your brand, your templates, and your quality standards.</p>
         </div>
         <div class="card">
+          <IconBadge name="heart" />
           <h3>Good outsourcing is a relationship, not a transaction</h3>
           <p>Dedicated teams, regular check-ins, and a named point of contact — not a ticket queue.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="bolt" />
+          <h3>We're never done learning</h3>
+          <p>Compliance rules, software and best practice keep changing, so we treat staying current as part of the job, not an afterthought. We're not a rigid team — when there's a better way to do something, we adopt it.</p>
         </div>
       </div>
     </div>
@@ -53,15 +62,68 @@ import CtaBand from '../components/CtaBand.astro';
 
   <section class="section section--alt">
     <div class="container">
-      <p class="placeholder-note">
-        This page intentionally leaves out a founding story and named leadership bios — neither has been
-        confirmed yet. Add real detail (when and why the firm started, and who leads it) once it's ready;
-        see <code>LAUNCH_CHECKLIST.md</code>.
+      <h2>From One Client's Trust to a Full-Service Firm</h2>
+      <p class="lead" style="max-width: 720px;">
+        It started with one freelancer, one client, and a blank page. A UK accountancy practice had
+        just been incorporated — nothing was built yet — and needed someone who could turn that
+        blank page into a working firm: company processes, internal workflow, company secretarial
+        and administrative work, tax setup, and the year-end and bookkeeping software stack, all
+        built from scratch.
+      </p>
+      <p class="lead" style="max-width: 720px;">
+        The client noticed. Enough to hand over their entire processing workload to the person who'd
+        built it. That trust is what turned freelance work into something bigger — a subcontractor
+        came on board, then joined as a full employee, and one freelancer's workload grew into a
+        firm's.
+      </p>
+      <p class="lead" style="max-width: 720px;">
+        We formally became SM Global Accounting Services in 2025 to carry that work forward properly,
+        and the team has grown from one person to a small team since — without losing the hands-on
+        way of working that got us here. Today, we support that same practice's accounting workload —
+        around 120–130 clients across the UK, US, UAE and beyond — handling everything from AML
+        screening, client onboarding, company incorporation and company secretarial work through to
+        bookkeeping, statutory accounts and filing.
       </p>
     </div>
   </section>
 
   <section class="section">
+    <div class="container">
+      <h2>Meet the Team</h2>
+      <p class="lead">
+        Real qualifications, not just job titles — this is the team actually preparing your files.
+      </p>
+      <div class="grid grid--2" style="margin-top: var(--space-3);">
+        <div class="card">
+          <IconBadge name="badge-check" />
+          <h3>Account Manager</h3>
+          <p>ACCA-certified, with 7+ years' experience in the financial field — oversees the relationship and day-to-day priorities.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="heart" />
+          <h3>Relationship Manager</h3>
+          <p>A dedicated person who builds and maintains the relationship — with the client, and between our own team members.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="users" />
+          <h3>Client Manager &amp; Senior Accountant</h3>
+          <p>ACCA Affiliate — leads day-to-day client work alongside senior-level review of files.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="briefcase" />
+          <h3>Senior Accountants</h3>
+          <p>ACCA and CA Affiliate, with 10+ years' experience — handle the core preparation work: bookkeeping, VAT, year-end accounts and tax computations.</p>
+        </div>
+        <div class="card">
+          <IconBadge name="document" />
+          <h3>Junior Accountants</h3>
+          <p>3+ years' experience — support the preparation and processing work behind every file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
     <div class="container">
       <CtaBand headline="Want to See How We'd Fit Into Your Practice?" />
     </div>

@@ -1,11 +1,23 @@
 ---
-import { FOOTER_NAV, SITE } from '../site.config';
+import { FOOTER_NAV, LEGAL_NAV, SITE } from '../site.config';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div>
-      <p class="site-footer__brand">SM Global Accounting Services</p>
+      <p class="site-footer__brand">
+        <svg class="site-footer__mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="footerMark" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#3a8f9c"/>
+              <stop offset="1" stop-color="#4fae94"/>
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="16" fill="url(#footerMark)"/>
+          <text x="32" y="43" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">SM</text>
+        </svg>
+        <span>SM Global Accounting Services</span>
+      </p>
       <p class="site-footer__tagline">Outsourced bookkeeping, statutory accounts and tax support for UK accountancy practices.</p>
     </div>
     <nav aria-label="Footer">
@@ -23,6 +35,16 @@ const year = new Date().getFullYear();
   </div>
   <div class="container site-footer__bottom">
     <p>&copy; {year} SM Global Accounting Services. All rights reserved.</p>
+    <nav aria-label="Legal" class="site-footer__legal">
+      <ul>
+        {LEGAL_NAV.map((item, i) => (
+          <>
+            <li><a href={item.href}>{item.label}</a></li>
+            {i < LEGAL_NAV.length - 1 && <li aria-hidden="true" class="site-footer__legal-sep">·</li>}
+          </>
+        ))}
+      </ul>
+    </nav>
   </div>
 </footer>
 
@@ -31,6 +53,8 @@ const year = new Date().getFullYear();
     background: var(--color-primary-dark);
     color: #cfe1de;
     margin-top: var(--space-5);
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--color-secondary), var(--color-primary) 60%) 1;
   }
   .site-footer__inner {
     display: grid;
@@ -39,10 +63,17 @@ const year = new Date().getFullYear();
     padding: var(--space-4) var(--space-3);
   }
   .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-heading);
     font-weight: 700;
     color: #fff;
     margin-bottom: 0.3rem;
+  }
+  .site-footer__mark {
+    flex-shrink: 0;
+    border-radius: 7px;
   }
   .site-footer__tagline { color: #a9c4bf; margin-bottom: 0; }
   .site-footer nav ul {
@@ -59,6 +90,22 @@ const year = new Date().getFullYear();
     padding: var(--space-2) var(--space-3);
     font-size: 0.85rem;
     color: #8fada7;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
   }
   .site-footer__bottom p { margin: 0; }
+  .site-footer__legal ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__legal a { color: #8fada7; }
+  .site-footer__legal a:hover { color: #fff; }
+  .site-footer__legal-sep { color: #5f7d78; }
 </style>

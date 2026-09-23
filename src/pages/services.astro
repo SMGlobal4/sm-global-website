@@ -1,44 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 
-// Ordered to match the decided positioning wedge: statutory accounts,
-// personal taxation and bookkeeping lead; the remaining compliance
-// workload follows.
-const services = [
-  {
-    title: 'Year-End Statutory Accounts',
-    body: "Preparation of statutory accounts under FRS 102 (Section 1A) or FRS 105, ready for your review and filing with Companies House. Working papers built to your practice's own templates.",
-  },
-  {
-    title: 'Self Assessment & Personal Tax',
-    body: 'Personal tax return preparation for sole traders, partners, and directors — including income from property, dividends, and capital gains — ahead of the Self Assessment deadline.',
-  },
-  {
-    title: 'Bookkeeping & VAT Returns',
-    body: "Ongoing transaction processing, bank reconciliation, and quarterly VAT return preparation — including Making Tax Digital for VAT compliance. Worked directly in your clients' own Xero, QuickBooks, or FreeAgent files.",
-  },
-  {
-    title: 'Corporation Tax',
-    body: 'Corporation tax computations and CT600 preparation, reconciled against the statutory accounts, ready for your final review before submission to HMRC.',
-  },
-  {
-    title: 'Payroll Processing',
-    body: 'Weekly, fortnightly, or monthly payroll runs, including RTI submissions, pension auto-enrolment administration, and payslip preparation.',
-  },
-  {
-    title: 'Accounts Payable / Accounts Receivable',
-    body: "Purchase ledger and sales ledger management, supplier payment runs, and credit control support for your clients' day-to-day finance operations.",
-  },
-  {
-    title: 'Practice Management Support',
-    body: 'Administrative and workflow support inside your practice management software — job tracking, deadline monitoring, and client record maintenance.',
-  },
-  {
-    title: 'Company Secretarial & Compliance',
-    body: 'Confirmation statements, company incorporations, and registered office administration, alongside AML (Anti-Money Laundering) screening support for client onboarding.',
-  },
-];
+// Each service is its own file under src/data/services/ — see that folder's
+// README — so the site's CMS (public/admin/) can add, edit, remove and
+// reorder them without touching code. `order` controls display order.
+const serviceModules = import.meta.glob('../data/services/*.json', {
+  eager: true,
+  import: 'default',
+}) as Record<string, { order: number; icon: string; title: string; body: string }>;
+const services = Object.values(serviceModules).sort((a, b) => a.order - b.order);
 ---
 <BaseLayout
   title="Outsourced Accounting Services for UK Practices"
@@ -58,9 +30,11 @@ const services = [
 
   <section class="section section--alt">
     <div class="container">
-      <div class="grid grid--2">
+      <h2>Our Core Services</h2>
+      <div class="grid grid--2" style="margin-top: var(--space-3);">
         {services.map((s) => (
           <div class="card">
+            <IconBadge name={s.icon} />
             <h3>{s.title}</h3>
             <p>{s.body}</p>
           </div>

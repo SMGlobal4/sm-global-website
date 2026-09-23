@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 
-const sectors = [
-  { name: 'Media & Entertainment', note: 'Production, talent and rights-related client work.' },
-  { name: 'Sport & Fitness', note: 'Clubs, practitioners and related SME accounts.' },
-  { name: 'Property & Real Estate', note: 'Rental income accounts, capital gains considerations, and portfolio bookkeeping.' },
-  { name: 'Construction & Trades', note: 'CIS-aware bookkeeping and compliance.' },
-  { name: 'Beauty & Retail', note: 'Day-to-day bookkeeping and compliance for small and medium businesses.' },
-  { name: 'Financial & Professional Services', note: 'Compliance-literate support for firms operating under their own regulatory obligations.' },
-];
+// Each sector is its own file under src/data/industries/ so the site's
+// CMS (public/admin/) can add, edit, remove and reorder them without
+// touching code. `order` controls display order.
+const sectorModules = import.meta.glob('../data/industries/*.json', {
+  eager: true,
+  import: 'default',
+}) as Record<string, { order: number; name: string; note: string }>;
+const sectors = Object.values(sectorModules).sort((a, b) => a.order - b.order);
 ---
 <BaseLayout
   title="Industries We Support"
@@ -29,7 +29,8 @@ const sectors = [
 
   <section class="section section--alt">
     <div class="container">
-      <div class="grid grid--3">
+      <h2>Sectors We've Worked Across</h2>
+      <div class="grid grid--3" style="margin-top: var(--space-3);">
         {sectors.map((s) => (
           <div class="card">
             <h3>{s.name}</h3>

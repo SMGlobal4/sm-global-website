@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+---
+<div class="icon-badge">
+  <Icon name={name as any} size={26} />
+</div>
+
+<style>
+  .icon-badge {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-secondary-light), #ffffff);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+</style>

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { SITE } from '../site.config';
 
 interface Props {
   title: string;
@@ -9,9 +10,29 @@ interface Props {
 }
 const { title, description } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// AccountingService structured data (schema.org), built from the same
+// site-wide facts as the rest of the site — see src/site.config.ts.
+// Rendered on every page so any page can surface as a rich result.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'AccountingService',
+  name: SITE.name,
+  url: SITE.domain,
+  email: SITE.email,
+  telephone: SITE.phone,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'A18 Orchid Square, Ambernath, Mumbai',
+    postalCode: '421506',
+    addressCountry: 'IN',
+  },
+  areaServed: ['GB', 'US', 'AE'],
+};
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,6 +50,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -37,5 +59,33 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+    <script>
+      // Minimal, dependency-free scroll-reveal. Everything is visible by default
+      // (no-JS, JS-fails, and prefers-reduced-motion users all see normal content) —
+      // this only ever ADDS motion for users who can run it and haven't asked us not to.
+      // Swapping the class and wiring the observer happen in one block: if anything
+      // here throws, `.no-js` never becomes `.js`, so the CSS hidden state never applies.
+      document.documentElement.classList.replace('no-js', 'js');
+
+      const targets = document.querySelectorAll('.lead, .stat');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-revealed'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
   title="Data Security at SM Global Accounting Services"
@@ -22,20 +23,24 @@ import CtaBand from '../components/CtaBand.astro';
       <h2>How Your Data Stays Safe</h2>
       <div class="grid grid--2" style="margin-top: var(--space-3);">
         <div class="card">
+          <IconBadge name="lock" />
           <h3>Nothing leaves your system</h3>
           <p>We access your practice's own software remotely, over encrypted connections. Files are never copied, downloaded, or moved to a third-party platform.</p>
         </div>
         <div class="card">
+          <IconBadge name="shield" />
           <h3>Security You Can Rely On</h3>
           <p>Firewalls, anti-virus, and IP-restricted access on every system we use to connect to yours.</p>
         </div>
         <div class="card">
+          <IconBadge name="users" />
           <h3>Our People</h3>
           <p>Every team member signs a confidentiality agreement, and we maintain a dedicated IT &amp; Data Security Lead responsible for our security infrastructure and protocols.</p>
         </div>
         <div class="card">
+          <IconBadge name="badge-check" />
           <h3>GDPR, Done Properly</h3>
-          <p>Our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted.</p>
+          <p>Our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted. See our <a href="/privacy-policy">Privacy Policy</a> for the full detail.</p>
         </div>
       </div>
       <p class="placeholder-note" style="margin-top: var(--space-3);">

@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 
 const groups = [
-  { label: 'Bookkeeping', tools: 'Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry' },
-  { label: 'Year-End Accounts & Tax', tools: 'TaxCalc, IRIS, CCH' },
-  { label: 'Practice Management', tools: 'BrightManager' },
-  { label: 'Company Secretarial & Compliance', tools: 'Inform Direct, AML screening tools' },
-  { label: 'Everyday Collaboration', tools: 'Microsoft Outlook, Teams, Excel, Word' },
+  { icon: 'book', label: 'Bookkeeping', tools: 'Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry' },
+  { icon: 'document', label: 'Year-End Accounts & Tax', tools: 'TaxCalc, IRIS, CCH' },
+  { icon: 'briefcase', label: 'Practice Management', tools: 'BrightManager' },
+  { icon: 'shield-check', label: 'Company Secretarial & Compliance', tools: 'Inform Direct, AML screening tools' },
+  { icon: 'users', label: 'Everyday Collaboration', tools: 'Microsoft Outlook, Teams, Excel, Word' },
 ];
 ---
 <BaseLayout
@@ -27,9 +28,11 @@ const groups = [
 
   <section class="section section--alt">
     <div class="container">
-      <div class="grid grid--2">
+      <h2>Where Our Team Specialises</h2>
+      <div class="grid grid--2" style="margin-top: var(--space-3);">
         {groups.map((g) => (
           <div class="card">
+            <IconBadge name={g.icon} />
             <h3>{g.label}</h3>
             <p>{g.tools}</p>
           </div>

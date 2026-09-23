@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
   title="SM Global Accounting Services | Outsourced Accounting for UK Practices"
@@ -28,24 +29,51 @@ import CtaBand from '../components/CtaBand.astro';
     </div>
   </section>
 
+  <section class="stat-band">
+    <div class="container">
+      <div class="stat-strip">
+        <div class="stat">
+          <span class="stat__value">Since 2025</span>
+          <span class="stat__label">Delivering outsourced accounting support</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">120–130</span>
+          <span class="stat__label">Clients supported end-to-end</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">UK · US · UAE</span>
+          <span class="stat__label">And beyond — full lifecycle, any geography</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">Full lifecycle</span>
+          <span class="stat__label">Onboarding and AML through to filing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--alt">
     <div class="container">
       <p class="eyebrow">Why Practices Outsource to Us</p>
       <h2>Capacity Your Practice Can Rely On</h2>
       <div class="grid grid--2" style="margin-top: var(--space-3);">
         <div class="card">
+          <IconBadge name="clock" />
           <h3>Capacity without the hire</h3>
           <p>Scale up during Self Assessment or year-end peaks without recruiting, training, or carrying idle overhead the rest of the year.</p>
         </div>
         <div class="card">
+          <IconBadge name="lock" />
           <h3>Work stays in your systems</h3>
           <p>We log in securely to your existing software — nothing is copied, downloaded, or moved to a third-party platform.</p>
         </div>
         <div class="card">
+          <IconBadge name="users" />
           <h3>A dedicated team, not a rotating pool</h3>
           <p>The people working on your files get to know your practice, your clients, and your way of doing things.</p>
         </div>
         <div class="card">
+          <IconBadge name="shield-check" />
           <h3>Built around UK compliance</h3>
           <p>Our processes are built around FRS 102 (Section 1A), FRS 105, Making Tax Digital, and current HMRC and Companies House filing requirements — not adapted from a generic offshore template.</p>
         </div>
@@ -63,14 +91,17 @@ import CtaBand from '../components/CtaBand.astro';
       </p>
       <div class="grid grid--3" style="margin-top: var(--space-3);">
         <div class="card">
+          <IconBadge name="document" />
           <h3>Year-End Statutory Accounts</h3>
           <p>Prepared under FRS 102 (Section 1A) or FRS 105, ready for your review and Companies House filing.</p>
         </div>
         <div class="card">
+          <IconBadge name="percent" />
           <h3>Self Assessment &amp; Personal Tax</h3>
           <p>Personal tax returns for sole traders, partners and directors, ahead of the Self Assessment deadline.</p>
         </div>
         <div class="card">
+          <IconBadge name="book" />
           <h3>Bookkeeping &amp; VAT</h3>
           <p>Ongoing transaction processing, bank reconciliation and Making Tax Digital VAT returns.</p>
         </div>
@@ -84,10 +115,23 @@ import CtaBand from '../components/CtaBand.astro';
       <p class="eyebrow">Proof, Not Just a Pitch</p>
       <h2>Trusted With the Full Client Lifecycle</h2>
       <p class="lead">
-        We already run the complete relationship — from onboarding and AML/CDD through to bookkeeping,
-        statutory accounts and filing — for a leading UK accountancy startup firm. That's not a single
-        service bolted on; it's end-to-end ownership of client work, under someone else's brand, done properly.
+        This isn't a hypothetical. It's how we already work with one UK accountancy practice, from the
+        day it was incorporated to today.
       </p>
+      <div class="grid grid--3" style="margin-top: var(--space-3);">
+        <div class="card">
+          <h3>The situation</h3>
+          <p>A newly incorporated UK accountancy practice had no back office yet — no processes, no software stack, nothing built.</p>
+        </div>
+        <div class="card">
+          <h3>What we did</h3>
+          <p>Built it from scratch and then ran it: company secretarial and admin work, tax and bookkeeping software setup, AML screening, client onboarding, bookkeeping, statutory accounts and filing.</p>
+        </div>
+        <div class="card">
+          <h3>Where it stands today</h3>
+          <p>That relationship is still the core of our work — full ownership of client work, under their own brand, spanning around 120–130 clients across the UK, US, UAE and beyond.</p>
+        </div>
+      </div>
     </div>
   </section>
 

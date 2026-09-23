@@ -1,0 +1,103 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Sveltia CMS configuration. This is the ONLY file that needs editing to
+# finish setting up the content editor — see ADMIN_SETUP.md at the project
+# root for the full one-time setup (GitHub OAuth App + a free Cloudflare
+# Worker). Repo and Worker URL are both filled in below — the remaining
+# steps are the OAuth App's callback URL and the Worker's environment
+# variables, both covered in ADMIN_SETUP.md.
+
+backend:
+  name: github
+  repo: SMGlobal4/sm-global-website
+  branch: main
+  base_url: https://sveltia-cms-auth.purple-dust-eb4e.workers.dev
+
+# Uploaded images (e.g. future team/office photos) land in public/uploads/
+# and are referenced as /uploads/<file> — no site code needs to change to
+# start using them once real photography exists (see LAUNCH_CHECKLIST.md).
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: settings
+    label: Site Settings
+    description: Contact details and business facts used across the whole site.
+    files:
+      - name: site
+        label: Business Details
+        file: src/data/site.json
+        fields:
+          - { label: Legal / Trading Name, name: name, widget: string }
+          - { label: Website Domain (with https://), name: domain, widget: string }
+          - { label: Owner Name, name: ownerName, widget: string }
+          - { label: Main Email, name: email, widget: string }
+          - { label: General Enquiries Email, name: emailInfo, widget: string }
+          - { label: Phone Number, name: phone, widget: string }
+          - { label: Office Address, name: address, widget: string }
+
+  - name: services
+    label: Services
+    label_singular: Service
+    description: Cards shown on the Services page and referenced from the homepage.
+    folder: src/data/services
+    create: true
+    slug: '{{fields.title}}'
+    fields:
+      - label: Display Order
+        name: order
+        widget: number
+        hint: Lower numbers show first. Existing services are numbered 1–8.
+      - label: Icon
+        name: icon
+        widget: select
+        options:
+          [shield, shield-check, clock, users, badge-check, document, percent,
+            book, building, briefcase, lock, server, layers, bolt, sliders, heart]
+        hint: Picks from the site's existing hand-drawn icon set — no new icons can be added here.
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: body, widget: text }
+
+  - name: industries
+    label: Industries We Serve
+    label_singular: Industry
+    description: Sector cards shown on the Industries We Serve page.
+    folder: src/data/industries
+    create: true
+    slug: '{{fields.name}}'
+    fields:
+      - label: Display Order
+        name: order
+        widget: number
+        hint: Lower numbers show first.
+      - { label: Sector Name, name: name, widget: string }
+      - { label: Short Note, name: note, widget: string }
+
+  - name: faqs
+    label: FAQs
+    description: Grouped questions and answers shown on the FAQs page, in display order.
+    files:
+      - name: faqs
+        label: Questions & Answers
+        file: src/data/faqs.json
+        fields:
+          - label: Categories
+            name: categories
+            widget: list
+            label_singular: Category
+            summary: '{{fields.category}}'
+            fields:
+              - { label: Category Name, name: category, widget: string }
+              - label: Questions
+                name: items
+                widget: list
+                label_singular: Question
+                summary: '{{fields.q}}'
+                fields:
+                  - { label: Question, name: q, widget: string }
+                  - { label: Answer, name: a, widget: text }
+                  - label: Mark as "reasonable placeholder, needs confirming"
+                    name: placeholder
+                    widget: boolean
+                    required: false
+                    default: false

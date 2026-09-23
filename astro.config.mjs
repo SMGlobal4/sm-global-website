@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // Deployed via GitHub Pages to a custom domain (smglobalaccounting.co.in),
 // kept in public/CNAME. Because it's a custom domain at the root, no `base`
@@ -7,4 +8,5 @@ export default defineConfig({
   site: 'https://smglobalaccounting.co.in',
   output: 'static',
   trailingSlash: 'never',
+  integrations: [sitemap()],
 });

@@ -1,17 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
   title="Meet the Team Behind Your Work"
-  description="A lean, nine-person team with a genuine second-person quality check built in — who's actually working on your files."
+  description="A lean team with a genuine second-person quality check built in — who's actually working on your files."
 >
   <section class="section">
     <div class="container">
       <p class="eyebrow">Team Structure</p>
       <h1>A Small Team, Built for Accountability</h1>
       <p class="lead">
-        Outsourcing only works if you know who's doing what. We're a lean team of nine — people
+        Outsourcing only works if you know who's doing what. We're a lean team — people
         genuinely cover more than one role, and we'd rather tell you that honestly than dress it up
         as a bigger department than it is.
       </p>
@@ -20,24 +21,28 @@ import CtaBand from '../components/CtaBand.astro';
 
   <section class="section section--alt">
     <div class="container">
-      <div class="grid grid--2">
+      <h2>Who's Actually on Your Files</h2>
+      <div class="grid grid--2" style="margin-top: var(--space-3);">
         <div class="card">
+          <IconBadge name="users" />
           <h3>Engagement Lead, Team Manager &amp; Senior Accountants/Bookkeepers</h3>
           <p>
-            Four people cover these functions between them — your single point of contact for the
+            This group covers these functions between them — your single point of contact for the
             relationship, day-to-day oversight of deadlines, and the preparation work itself
             (bookkeeping, VAT, year-end accounts, tax computations) inside your existing systems.
           </p>
         </div>
         <div class="card">
+          <IconBadge name="briefcase" />
           <h3>Junior Accountants/Bookkeepers &amp; Admin/Company Secretarial</h3>
           <p>
-            A further four people handle supporting preparation work alongside admin and company
+            Another group handles supporting preparation work alongside admin and company
             secretarial tasks — including AML screening and CDD/EDD file preparation for client
             onboarding.
           </p>
         </div>
         <div class="card">
+          <IconBadge name="badge-check" />
           <h3>Quality Review</h3>
           <p>
             A genuine second, independent check on every file before it's sent to you — built into
@@ -45,6 +50,7 @@ import CtaBand from '../components/CtaBand.astro';
           </p>
         </div>
         <div class="card">
+          <IconBadge name="server" />
           <h3>IT &amp; Data Security Lead</h3>
           <p>
             One dedicated senior IT engineer, full-time, responsible for our security infrastructure

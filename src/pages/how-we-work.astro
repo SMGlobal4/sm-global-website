@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
   title="How We Work — Engagement Models"
@@ -18,18 +19,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="section section--alt">
     <div class="container">
+      <h2>We Start by Understanding Your Process</h2>
+      <p class="lead" style="max-width: 720px;">
+        Before we take on any work, we look at how you currently do things — your workflow, your
+        templates, your tools — and where a different approach would save you time. If what you're
+        already doing is the most efficient way, we keep it exactly as it is. If we think there's a
+        better way, we'll say so and suggest it — the decision to change anything is always yours.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="grid grid--3">
         <div class="card">
+          <IconBadge name="bolt" />
           <h3>1. FTE Module</h3>
-          <p>A dedicated team member (or team) who works exclusively on your practice, following your hours and your systems — like an in-house hire, without the recruitment, training, or overhead.</p>
+          <p>A fixed monthly rate for a dedicated team member (or team) allocated exclusively to your practice, following your hours and your systems — like an in-house hire, without the recruitment, screening, or training overhead, which we handle on our side. If your allocated person is on leave, we arrange buffer cover so your work doesn't stall.</p>
           <p><strong>Best suited to:</strong> firms with a steady, ongoing volume of work who want consistent, dedicated capacity.</p>
         </div>
         <div class="card">
+          <IconBadge name="sliders" />
           <h3>2. Pay As You Go</h3>
           <p>Only pay for the work you send us, when you send it — no minimum commitment and no idle capacity.</p>
           <p><strong>Best suited to:</strong> firms with fluctuating workloads, seasonal peaks, or overflow work, or anyone who'd like to test the relationship before committing further.</p>
         </div>
         <div class="card">
+          <IconBadge name="layers" />
           <h3>3. Portfolio Management Services</h3>
           <p>Hand over full ownership of a client portfolio — bookkeeping, accounts, tax, and everything in between — and we manage it end-to-end under your brand, reporting back on whatever schedule suits you.</p>
           <p><strong>Best suited to:</strong> firms looking to free up significant capacity by outsourcing entire client relationships, not just individual tasks.</p>
@@ -38,7 +54,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--alt">
     <div class="container">
       <h2>Not Sure Which Fits?</h2>
       <p class="lead">
