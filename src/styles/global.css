@@ -704,7 +704,49 @@ li { margin-bottom: 0.4rem; }
   margin-bottom: var(--space-3);
 }
 .hero--home .lead { font-size: 1.2rem; color: var(--color-text); max-width: 34rem; }
-.hero__photo { width: 100%; }
+/* Home hero image: not a boxed picture. It sits behind the text on the right
+   and fades into the page background on its left and top/bottom edges, so it
+   reads as part of the hero. */
+.hero--home .hero__inner { grid-template-columns: minmax(0, 1fr); }
+.hero--home .hero__inner > div { max-width: 38rem; }
+.hero__photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 58%;
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 24%, #000 52%),
+    linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 24%, #000 52%),
+    linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%);
+  mask-composite: intersect;
+}
+.hero__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 66% center;
+}
+@media (max-width: 900px) {
+  .hero__photo {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    margin-top: var(--space-3);
+    -webkit-mask-image:
+      linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%),
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    mask-image:
+      linear-gradient(180deg, transparent 0%, #000 30%, #000 70%, transparent 100%),
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  }
+}
 
 /* A plain, unboxed list with a small gold marker — replaces pill badges */
 .plain-list {
@@ -882,14 +924,6 @@ li { margin-bottom: 0.4rem; }
 .spec-list dd { margin: 0; color: var(--color-text-muted); }
 .prose { max-width: 44rem; }
 .prose p { font-size: 1.1rem; }
-.person-name {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--color-heading);
-  margin: var(--space-2) 0 0.2rem;
-}
-.person-name--todo { color: #7a5c00; border-bottom: 1px dashed #b88a00; display: inline-block; }
 @media (max-width: 640px) {
   .spec-list__row { grid-template-columns: 1fr; gap: 0.2rem; }
 }
@@ -905,11 +939,6 @@ li { margin-bottom: 0.4rem; }
 .quote blockquote p { margin: 0; }
 .quote figcaption { display: flex; flex-direction: column; gap: 0.15rem; color: var(--color-text-muted); }
 .quote__todo { color: #7a5c00; border: 1px dashed #b88a00; background: #fffaf0; padding: 0.15rem 0.5rem; display: inline-block; }
-
-/* Team cards: three across on desktop, two on tablets, one on phones */
-.grid--team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-@media (max-width: 900px) { .grid--team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .grid--team { grid-template-columns: 1fr; } }
 
 /* Keyboard focus: one clear, visible outline on every interactive element.
    Light backgrounds use the dark gold; charcoal areas use a light gold. */
@@ -955,3 +984,49 @@ textarea:focus-visible {
 }
 
 .form-notice { font-size: 1rem; color: var(--color-text-muted); max-width: 46ch; }
+
+
+/* Wider layout for image + text sections on large screens */
+.container--wide { max-width: 1560px; }
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: center;
+}
+.feature__media { margin: 0; }
+.feature__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(51, 51, 51, 0.12), 0 16px 40px rgba(51, 51, 51, 0.14);
+}
+.feature__media figcaption { margin-top: 0.5rem; font-size: 1rem; color: var(--color-text-muted); }
+.feature__text h2 { margin-top: 0; }
+@media (max-width: 900px) {
+  .feature { grid-template-columns: 1fr; gap: var(--space-3); }
+  .feature__media img { aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 30%; }
+  .feature__text .lead { font-size: 1.05rem; }
+}
+
+/* Dark band with a photo behind it: the picture shows through at the right
+   and is kept dark enough that the text stays readable. */
+.band-dark--photo { position: relative; overflow: hidden; }
+.band-dark__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 55%;
+  z-index: 0;
+}
+.band-dark--photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(51, 51, 51, 0.97) 0%, rgba(51, 51, 51, 0.9) 45%, rgba(51, 51, 51, 0.82) 100%);
+}
+.band-dark--photo .band-dark__inner { position: relative; z-index: 1; }

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+// Still hidden from search (noindex, and excluded from the sitemap in
+// astro.config.mjs) until real, permissioned quotes exist. The page is now
+// linked from the footer, so visitors can reach it, but the three cards below
+// are PLACEHOLDERS — they must be replaced with real quotes before the
+// noindex flag and sitemap exclusion are removed. Nothing here is a real
+// testimonial. See LAUNCH_CHECKLIST.md, "Real content still needed".
+---
+<BaseLayout
+  title="Client Testimonials | SM Global Accounting Services"
+  description="What UK accountancy practices say about working with SM Global Accounting Services. This page will carry real client feedback once clients have agreed to be quoted."
+  noindex
+>
+  <section class="section hero">
+    <div class="container">
+      <p class="eyebrow">Client testimonials</p>
+      <h1>What practices say about working with us</h1>
+      <p class="lead">
+        We will only publish feedback from practices that have agreed to be quoted. Nothing on this
+        page is invented.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="placeholder-note" style="max-width: 44rem;">
+        <strong>Placeholders:</strong> the three boxes below are not real testimonials. Replace each
+        with a real quote, the person's name and role, and their firm, with their written permission.
+      </p>
+      <div class="quote-list" style="margin-top: var(--space-3);">
+        {[1, 2, 3].map((n) => (
+          <figure class="quote">
+            <blockquote>
+              <p class="quote__todo">[PLACEHOLDER: client quote {n}: the exact words the client approved, 1–3 sentences]</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote__todo">[Full name], [Role]</span>
+              <span class="quote__todo">[Firm name], [Town or city]</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBand
+        headline="Curious what this would look like for your practice?"
+        body="Book a free consultation and we'll talk through where extra capacity would help most."
+      />
+    </div>
+  </section>
+</BaseLayout>

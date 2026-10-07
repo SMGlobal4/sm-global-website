@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 ---
 <BaseLayout
   title="About Us | Our Outsourced Accounting Team for UK Practices"
-  description="Meet the outsourced accounting team behind SM Global: UK GAAP-trained, GDPR-compliant, and built to work as a genuine extension of your practice."
+  description="About the outsourced accounting team behind SM Global: UK GAAP-trained, GDPR-compliant, and built to work as a genuine extension of your practice."
 >
   <section class="section hero">
     <div class="container">
@@ -16,6 +15,33 @@ import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
         We handle statutory accounts, personal tax, bookkeeping and compliance work, so your team can
         spend its time on advisory work and client relationships.
       </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--wide feature">
+      <figure class="feature__media">
+        <img
+          src="/images/team-office-960.webp"
+          srcset="/images/team-office-640.webp 640w, /images/team-office-960.webp 960w, /images/team-office-1448.webp 1448w, /images/team-office-2000.webp 2000w"
+          sizes="(max-width: 900px) 100vw, 60vw"
+          width="1448"
+          height="1086"
+          alt="Three colleagues working together at a laptop in a bright office, with a fourth colleague working behind them and the Houses of Parliament visible through the window"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption>Illustrative image</figcaption>
+      </figure>
+      <div class="feature__text">
+        <p class="eyebrow">How we work with you</p>
+        <h2>One team, working as part of yours</h2>
+        <p class="lead">
+          Dedicated teams, regular check-ins and a named point of contact. That is how we stay close
+          to your practice and work as an extension of your own team.
+        </p>
+        <p><a class="text-link" href="/team-structure">See how the team is organised →</a></p>
+      </div>
     </div>
   </section>
 
@@ -79,49 +105,6 @@ import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
         secretarial work, bookkeeping across the UK, US, UAE and beyond, and statutory accounts
         preparation and filing for UK companies.
       </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>The team</h2>
-      <p class="lead">These are the people preparing your files.</p>
-      <p class="placeholder-note" style="max-width: 44rem;">
-        <strong>To be completed before launch:</strong> a photo, full name and a one-line description
-        for each person below. See LAUNCH_CHECKLIST.md, "Real content still needed".
-      </p>
-      <div class="grid grid--team" style="margin-top: var(--space-3);">
-        <div class="card">
-          <PhotoPlaceholder compact ratio="1 / 1" label="Photo: Account Manager" note="Square, at least 600 × 600 px" />
-          <p class="person-name person-name--todo">[Full name]</p>
-          <h3>Account Manager</h3>
-          <p>ACCA-certified, with 7+ years' experience in the financial field. Oversees the relationship and day-to-day priorities.</p>
-        </div>
-        <div class="card">
-          <PhotoPlaceholder compact ratio="1 / 1" label="Photo: Relationship Manager" note="Square, at least 600 × 600 px" />
-          <p class="person-name person-name--todo">[Full name]</p>
-          <h3>Relationship Manager</h3>
-          <p>A dedicated person who builds and maintains the relationship, with the client and between our own team members.</p>
-        </div>
-        <div class="card">
-          <PhotoPlaceholder compact ratio="1 / 1" label="Photo: Client Manager" note="Square, at least 600 × 600 px" />
-          <p class="person-name person-name--todo">[Full name]</p>
-          <h3>Client Manager &amp; Senior Accountant</h3>
-          <p>ACCA Affiliate. Leads day-to-day client work alongside senior-level review of files.</p>
-        </div>
-        <div class="card">
-          <PhotoPlaceholder compact ratio="1 / 1" label="Photo: Senior Accountant" note="Square, at least 600 × 600 px" />
-          <p class="person-name person-name--todo">[Full name]</p>
-          <h3>Senior Accountants</h3>
-          <p>ACCA and CA Affiliate, with 10+ years' experience. Handle the core preparation work: bookkeeping, VAT, year-end accounts and tax computations.</p>
-        </div>
-        <div class="card">
-          <PhotoPlaceholder compact ratio="1 / 1" label="Photo: Junior Accountant" note="Square, at least 600 × 600 px" />
-          <p class="person-name person-name--todo">[Full name]</p>
-          <h3>Junior Accountants</h3>
-          <p>3+ years' experience. Support the preparation and processing work behind every file.</p>
-        </div>
-      </div>
     </div>
   </section>
 

@@ -12,20 +12,15 @@ import { SITE } from '../site.config';
       <h1>Terms &amp; Conditions</h1>
       <p class="lead">Last updated: 7 October 2026</p>
 
-      <p class="placeholder-note" style="margin: var(--space-3) 0; max-width: none;">
-        <strong>Draft for review.</strong> These terms cover use of this website only. They are not a
-        client engagement contract, and they have not yet been reviewed by a solicitor. Items in
-        [square brackets] must be completed before the site goes live.
-      </p>
-
       <div class="grid" style="max-width: 760px; margin-top: var(--space-3); margin-inline: auto;">
         <div>
           <h2>1. Who we are</h2>
           <p>
-            This website is operated by {SITE.name}, a business registered in India: [legal entity
-            name and registration type and number], [registered address]. Email:
+            This website is operated by {SITE.name}, a business registered in India, with its
+            registered address in Mumbai, India. Email:
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. By using this site you agree to these
-            terms. If you do not agree, please do not use the site.
+            terms. If you do not agree, please do not use the site. These terms cover use of this
+            website only. They are not a client engagement contract.
           </p>
         </div>
 
@@ -43,16 +38,27 @@ import { SITE } from '../site.config';
           <h2>3. Accuracy</h2>
           <p>
             We try to keep this site accurate and up to date, but we do not guarantee that every detail
-            is current or error-free, and we may change the content at any time without notice.
+            is current or error-free, and we may change the content at any time without notice. Figures
+            and descriptions of our work are given in good faith and may change as our business does.
           </p>
         </div>
 
         <div>
-          <h2>4. Intellectual property and trademarks</h2>
+          <h2>4. Using the site</h2>
           <p>
-            The content, design and branding on this site belong to {SITE.name} unless otherwise
-            stated. You may view and print pages for your own reference, but you may not copy,
-            republish or reuse content from this site commercially without our written permission.
+            You may use this site for lawful purposes only. You must not try to gain unauthorised
+            access to it, interfere with its operation, introduce malicious code, or use it to send us
+            anything unlawful or misleading. We may restrict access to the site at any time.
+          </p>
+        </div>
+
+        <div>
+          <h2>5. Intellectual property and trademarks</h2>
+          <p>
+            The content, design, images and branding on this site, including the SM Global logo,
+            belong to {SITE.name} unless otherwise stated. You may view and print pages for your own
+            reference, but you may not copy, republish or reuse content from this site commercially
+            without our written permission.
           </p>
           <p>
             Product and company names mentioned on this site (for example Xero, QuickBooks, IRIS, CCH
@@ -62,7 +68,7 @@ import { SITE } from '../site.config';
         </div>
 
         <div>
-          <h2>5. Third-party links</h2>
+          <h2>6. Third-party links</h2>
           <p>
             This site may link to third-party websites. We do not control those sites and are not
             responsible for their content or their privacy practices.
@@ -70,30 +76,32 @@ import { SITE } from '../site.config';
         </div>
 
         <div>
-          <h2>6. Liability</h2>
+          <h2>7. Liability</h2>
           <p>
-            To the extent permitted by law, we are not liable for any loss arising from your use of
-            this website. This does not limit any liability that cannot legally be excluded or limited.
-            [Confirm the final wording with a solicitor.]
+            This site is provided &ldquo;as is&rdquo;. To the extent permitted by law, we are not liable
+            for any loss or damage arising from your use of, or reliance on, this website, including
+            indirect or consequential loss. Nothing in these terms limits or excludes liability for
+            death or personal injury caused by negligence, for fraud or fraudulent misrepresentation,
+            or for anything else that cannot legally be limited or excluded.
           </p>
         </div>
 
         <div>
-          <h2>7. Governing law</h2>
+          <h2>8. Governing law</h2>
           <p>
-            [To be confirmed with your solicitor. As an India-registered business you will most likely
-            state that these terms are governed by the laws of India and that the courts of Mumbai have
-            jurisdiction, while keeping any mandatory rights visitors have under their own local law.]
+            These terms are governed by the laws of India, and the courts of Mumbai have exclusive
+            jurisdiction over any dispute arising from them or from your use of this site. This does
+            not affect any mandatory rights you have under the law of the country where you live.
           </p>
         </div>
 
         <div>
-          <h2>8. Changes to these terms</h2>
-          <p>We may update these terms from time to time. The &ldquo;last updated&rdquo; date at the top shows the current version.</p>
+          <h2>9. Changes to these terms</h2>
+          <p>We may update these terms from time to time. The &ldquo;last updated&rdquo; date at the top shows the current version. Continued use of the site means you accept the updated terms.</p>
         </div>
 
         <div>
-          <h2>9. Contact</h2>
+          <h2>10. Contact</h2>
           <p>
             Questions about these terms can be sent to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
             See also our <a href="/privacy-policy">Privacy Policy</a>.

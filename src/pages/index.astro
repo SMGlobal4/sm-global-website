@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import IconBadge from '../components/IconBadge.astro';
 import TrialOffer from '../components/TrialOffer.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import { SITE } from '../site.config';
 ---
 <BaseLayout
@@ -29,13 +28,18 @@ import { SITE } from '../site.config';
           <li>Full client lifecycle: onboarding, AML/CDD, bookkeeping through to UK statutory filing</li>
         </ul>
       </div>
-      <div class="hero__photo">
-        <PhotoPlaceholder
-          label="Hero image: team photo or workflow screenshot"
-          note="Replace with a real team photo, or an anonymised Xero/QuickBooks workflow screenshot with all client names and figures removed. Suggested size: 1200 × 900 px."
-          ratio="4 / 3"
-        />
-      </div>
+    </div>
+    <div class="hero__photo">
+      <img
+        src="/images/hero-london-960.webp"
+        srcset="/images/hero-london-640.webp 640w, /images/hero-london-960.webp 960w, /images/hero-london-1448.webp 1448w, /images/hero-london-2000.webp 2000w"
+        sizes="(max-width: 900px) 100vw, 72vw"
+        width="1448"
+        height="1086"
+        alt="The Houses of Parliament and Big Ben beside the River Thames in London at sunset"
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
   </section>
 
@@ -121,7 +125,18 @@ import { SITE } from '../site.config';
     </div>
   </section>
 
-  <section class="band-dark">
+  <section class="band-dark band-dark--photo">
+    <img
+      class="band-dark__bg"
+      src="/images/london-gold-1448.webp"
+      srcset="/images/london-gold-960.webp 960w, /images/london-gold-1448.webp 1448w, /images/london-gold-2000.webp 2000w"
+      sizes="100vw"
+      width="1448"
+      height="1086"
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
     <div class="container band-dark__inner">
       <div>
         <p class="band-dark__eyebrow">Our track record</p>

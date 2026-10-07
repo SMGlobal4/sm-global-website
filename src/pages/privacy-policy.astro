@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../site.config';
+import { SITE, FORM_PROVIDER } from '../site.config';
 ---
 <BaseLayout
   title="Privacy Policy | SM Global Accounting Services"
@@ -12,21 +12,15 @@ import { SITE } from '../site.config';
       <h1>Privacy Policy</h1>
       <p class="lead">Last updated: 7 October 2026</p>
 
-      <p class="placeholder-note" style="margin: var(--space-3) 0; max-width: none;">
-        <strong>Draft for review.</strong> This policy has not yet been reviewed by a solicitor. Items
-        in [square brackets] must be completed before the site goes live.
-      </p>
-
       <div class="grid" style="max-width: 760px; margin-top: var(--space-3); margin-inline: auto;">
         <div>
           <h2>1. Who we are</h2>
           <p>
             This website is operated by {SITE.name} (&ldquo;we&rdquo;, &ldquo;us&rdquo;), a business
-            registered in India: [legal entity name and registration type and number], [registered
-            address]. We provide outsourced bookkeeping, statutory accounts, tax and related accounting
-            support to accountancy practices, mainly in the UK. We are the controller of the personal
-            data described in this policy. You can contact us at
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            registered in India, with its registered address in Mumbai, India. We provide outsourced
+            bookkeeping, statutory accounts, tax and related accounting support to accountancy
+            practices, mainly in the UK. We are the controller of the personal data described in this
+            policy. You can contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>
         </div>
 
@@ -34,62 +28,77 @@ import { SITE } from '../site.config';
           <h2>2. What this policy covers</h2>
           <p>
             This policy explains how we handle personal data collected through this website, for
-            example when you fill in the contact form. It does not cover how we handle client data
-            while carrying out accounting work for a practice we are engaged by. That is governed
-            separately by our engagement letter and data processing agreement with that practice.
+            example when you fill in the contact form or email us. It does not cover how we handle
+            client data while carrying out accounting work for a practice that has engaged us. That is
+            governed separately by our engagement letter and data processing agreement with that
+            practice.
           </p>
         </div>
 
         <div>
           <h2>3. What we collect</h2>
           <ul>
-            <li>Details you give us directly: your name, practice name, email address, phone number (optional) and the content of your message.</li>
-            <li>Standard technical data. Our website is hosted on GitHub Pages, which, like any web host, may process your IP address and browser details to deliver the pages to you. We do not add any tracking or analytics of our own.</li>
+            <li>Details you give us directly: your name, practice name, email address, phone number (optional), the area you want help with, and the content of your message.</li>
+            <li>Standard technical data. Our website is hosted on GitHub Pages, which, like any web host, may process your IP address and browser details to deliver the pages to you and to keep the service secure. We do not add any tracking or analytics of our own.</li>
           </ul>
+          <p>
+            Please do not send us confidential client information, passwords or bank details through
+            the contact form or by ordinary email. We will tell you how to share files securely once
+            an engagement begins.
+          </p>
         </div>
 
         <div>
-          <h2>4. How we use it</h2>
+          <h2>4. How we use it, and why</h2>
           <p>We use the information you send us to:</p>
           <ul>
             <li>Reply to your enquiry and arrange a consultation.</li>
             <li>Correspond with you about a possible or existing engagement.</li>
+            <li>Keep this website secure and working.</li>
             <li>Meet our own legal and accounting obligations.</li>
           </ul>
           <p>
-            For people in the UK, our legal basis is our legitimate interest in responding to enquiries
-            from prospective clients and, where an engagement follows, performing that contract. We do
-            not use your details for marketing unless you ask us to.
+            Under UK and EU data protection law, our lawful bases are our legitimate interest in
+            responding to enquiries from prospective clients, and, where an engagement follows,
+            performing that contract. Where Indian law applies, we rely on your voluntary submission of
+            your details for the purpose of your enquiry. We do not use your details for marketing
+            unless you ask us to, and we do not make decisions about you by automated means.
           </p>
         </div>
 
         <div>
           <h2>5. Where your data is processed</h2>
           <p>
-            We are based in India, so your enquiry is received and processed in India. Our service
-            providers (see section 7) may also process data in other countries. We only share what is
-            needed to deliver the service, and we ask our providers to protect it. [Your adviser should
-            confirm the safeguards to state here for UK and EU visitors before publishing.]
+            We are based in India, so your enquiry is received and handled in India. Our service
+            providers (see section 7) may also process data in other countries, including the United
+            Kingdom, the European Economic Area and the United States. These countries may not have
+            the same data protection laws as the one you live in. We share only what is needed to run
+            the service, we use encrypted connections, and we limit access to the people who need it.
           </p>
         </div>
 
         <div>
           <h2>6. How long we keep it</h2>
           <p>
-            We keep enquiry details for as long as needed to respond to you and, if an engagement
-            follows, for the length of that engagement plus [retention period] to meet our legal and
+            If your enquiry does not lead to an engagement, we delete your details within 24 months of
+            our last contact with you. If an engagement does follow, we keep the related contact details
+            for the length of the engagement and six years afterwards, to meet our legal and
             accounting obligations. After that we delete them.
           </p>
         </div>
 
         <div>
           <h2>7. Sharing your data</h2>
+          <p>We do not sell personal data. We share it only with the providers that help us run this website and our business:</p>
+          <ul>
+            <li>{FORM_PROVIDER}, a third-party form-delivery service, which receives what you submit in the contact form and forwards it to our inbox.</li>
+            <li>Microsoft, which provides our email service (Microsoft 365).</li>
+            <li>GitHub, which hosts this website (GitHub Pages).</li>
+          </ul>
           <p>
-            We do not sell personal data. The contact form is delivered by FormSubmit (formsubmit.co),
-            a third-party form-delivery service. It receives what you submit and forwards it to our
-            inbox. We also use email hosting [provider name] and GitHub Pages for hosting. We may share
-            data with other providers who help us run this website or our business, under
-            confidentiality obligations. We may also share data where the law requires it.
+            Each provider processes data under its own terms and privacy notice. We may also share data
+            with professional advisers under confidentiality obligations, and where the law or a public
+            authority requires it.
           </p>
         </div>
 
@@ -97,30 +106,42 @@ import { SITE } from '../site.config';
           <h2>8. Cookies and tracking</h2>
           <p>
             This site does not set cookies and does not use analytics, advertising or tracking tools.
-            If that changes, we will update this section and, where the law requires it, ask for your
-            consent first.
+            When you send the contact form, your browser passes briefly through the form provider's
+            servers, and they may set their own technical cookies. If we add cookies or analytics to
+            this site, we will update this section and, where the law requires it, ask for your consent
+            first.
           </p>
         </div>
 
         <div>
           <h2>9. Your rights</h2>
           <p>
-            Depending on where you are, you may have the right to access, correct or delete your
-            personal data, to restrict or object to our use of it, and to withdraw consent where we rely
-            on it. To use any of these rights, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
-            If you are in the UK, you can also complain to the Information Commissioner's Office
-            (ICO) at ico.org.uk. We also handle personal data in line with applicable Indian law,
-            including the Digital Personal Data Protection Act 2023 as its provisions come into force.
+            Depending on where you are, you may have the right to access the personal data we hold
+            about you, to have it corrected or deleted, to restrict or object to our use of it, to
+            receive a copy of it, and to withdraw consent where we rely on it. To use any of these
+            rights, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We will respond within one
+            month. If you are in the UK, you can also complain to the Information Commissioner's Office
+            (ICO) at ico.org.uk, and if you are in the EU, to your local data protection authority. We
+            also handle personal data in line with applicable Indian law, including the Digital
+            Personal Data Protection Act 2023 as its provisions come into force.
           </p>
         </div>
 
         <div>
-          <h2>10. Changes to this policy</h2>
+          <h2>10. Children</h2>
+          <p>
+            This website is for businesses and is not directed at anyone under 18. We do not knowingly
+            collect personal data from children.
+          </p>
+        </div>
+
+        <div>
+          <h2>11. Changes to this policy</h2>
           <p>We may update this policy from time to time. The &ldquo;last updated&rdquo; date at the top shows the current version.</p>
         </div>
 
         <div>
-          <h2>11. Contact</h2>
+          <h2>12. Contact</h2>
           <p>
             Questions about this policy can be sent to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
           </p>

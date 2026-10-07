@@ -11,7 +11,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       // Testimonials is hidden by client decision until there's something
-      // real to show (no nav link, marked noindex) — also keep it out of
+      // real to show (the page file is src/pages/_testimonials.astro, which
+      // Astro does not publish; rename it to testimonials.astro to bring it back) — also keep it out of
       // the sitemap so it's never handed to a crawler directly. Remove this
       // filter, along with the noindex prop and the FOOTER_NAV entry, once
       // real testimonials go live. See LAUNCH_CHECKLIST.md.

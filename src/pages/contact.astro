@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, SITE_PHONE_HREF } from '../site.config';
+import { SITE, SITE_PHONE_HREF, FORM_PROVIDER } from '../site.config';
 
 // Real, working submission via FormSubmit.co (https://formsubmit.co) — no
 // backend or account of our own required; it forwards submissions straight
@@ -95,7 +95,7 @@ const formAction = `https://formsubmit.co/${SITE.email}`;
             </div>
 
             <p class="form-notice">
-              We use what you send only to reply to your enquiry. It is delivered to us by FormSubmit,
+              We use what you send only to reply to your enquiry. It is delivered to us by {FORM_PROVIDER},
               a form-delivery service. Read our <a href="/privacy-policy">Privacy Policy</a> for details
               and your rights.
             </p>

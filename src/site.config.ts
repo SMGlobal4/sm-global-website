@@ -58,15 +58,17 @@ export const FOOTER_NAV: NavLink[] = [
   { label: 'Team Structure', href: '/team-structure' },
   { label: 'Team Specialisation', href: '/team-specialisation' },
   { label: 'Industries We Serve', href: '/industries' },
-  { label: 'Testimonials', href: '/testimonials' },
   { label: 'Careers', href: '/careers' },
   { label: 'FAQs', href: '/faqs' },
 ];
 
-// Small-print legal row at the very bottom of the footer. Both pages are
-// drafted templates — see the placeholder-note on each page and
-// LAUNCH_CHECKLIST.md before treating them as final, reviewed legal text.
+// Small-print legal row at the very bottom of the footer.
 export const LEGAL_NAV: NavLink[] = [
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms & Conditions', href: '/terms' },
 ];
+
+// The third-party service that delivers contact-form messages to our inbox.
+// Named in the contact form notice and the Privacy Policy, so change it here
+// (one place) if the form service is ever switched.
+export const FORM_PROVIDER = 'FormSubmit';
