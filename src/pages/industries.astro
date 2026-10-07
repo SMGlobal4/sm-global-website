@@ -1,52 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import IndustriesIllustration from '../components/IndustriesIllustration.astro';
 
-// Each sector is its own file under src/data/industries/ so the site's
-// CMS (public/admin/) can add, edit, remove and reorder them without
-// touching code. `order` controls display order.
+// Each sector is its own file under src/data/ so the site's CMS (public/admin/) can add,
+// edit, remove and reorder them without touching code. `order` controls display order.
+// (The `icon` field in the JSON is no longer shown on this page; it is kept so the CMS
+// entries stay valid.)
 const sectorModules = import.meta.glob('../data/industries/*.json', {
   eager: true,
   import: 'default',
-}) as Record<string, { order: number; name: string; note: string }>;
+}) as Record<string, { order: number; icon?: string; name: string; note: string }>;
 const sectors = Object.values(sectorModules).sort((a, b) => a.order - b.order);
 ---
 <BaseLayout
-  title="Industries We Support"
-  description="Experience across a genuine range of UK client sectors, built through full-lifecycle work — onboarding, AML/CDD, bookkeeping, statutory accounts and filing — for a leading UK accountancy startup firm."
+  title="Accounting Outsourcing Across UK Client Sectors | Industries"
+  description="Real experience across UK client sectors, including media, property, construction and retail, through full-lifecycle accounting and bookkeeping work."
 >
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Industries We Serve</p>
-      <h1>Experience Across a Genuine Range of UK Client Types</h1>
-      <p class="lead">
-        This isn't a generic list. It reflects the actual sector spread of client work we've handled
-        end-to-end — onboarding, AML/CDD, bookkeeping, statutory accounts, and filing — for a leading
-        UK accountancy startup firm.
-      </p>
+  <section class="section hero">
+    <div class="container hero__inner">
+      <div>
+        <p class="eyebrow">Industries We Serve</p>
+        <h1>The kinds of UK clients we've worked with</h1>
+        <p class="lead">
+          This list comes from real client work: onboarding, AML/CDD, bookkeeping, statutory accounts
+          and filing for a UK accountancy startup firm.
+        </p>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <IndustriesIllustration />
+      </div>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>Sectors We've Worked Across</h2>
-      <div class="grid grid--3" style="margin-top: var(--space-3);">
+      <h2>Sectors we've worked in</h2>
+      <dl class="spec-list">
         {sectors.map((s) => (
-          <div class="card">
-            <h3>{s.name}</h3>
-            <p>{s.note}</p>
+          <div class="spec-list__row">
+            <dt>{s.name}</dt>
+            <dd>{s.note}</dd>
           </div>
         ))}
-      </div>
-      <p class="lead" style="margin-top: var(--space-3);">…and a range of other SME sectors.</p>
+      </dl>
+      <p class="lead" style="margin-top: var(--space-3);">We have also worked with a range of other SME sectors.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <CtaBand
-        headline="Work With Clients in a Different Sector?"
-        body="Tell us more about your client base and we'll confirm whether it's a good fit."
+        headline="Do your clients work in a different sector?"
+        body="Tell us about your client base and we'll confirm whether we are a good fit."
       />
     </div>
   </section>

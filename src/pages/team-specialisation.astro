@@ -1,54 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import IconBadge from '../components/IconBadge.astro';
 
-const groups = [
-  { icon: 'book', label: 'Bookkeeping', tools: 'Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry' },
-  { icon: 'document', label: 'Year-End Accounts & Tax', tools: 'TaxCalc, IRIS, CCH' },
-  { icon: 'briefcase', label: 'Practice Management', tools: 'BrightManager' },
-  { icon: 'shield-check', label: 'Company Secretarial & Compliance', tools: 'Inform Direct, AML screening tools' },
-  { icon: 'users', label: 'Everyday Collaboration', tools: 'Microsoft Outlook, Teams, Excel, Word' },
+const groups: { label: string; tools: string }[] = [
+  { label: 'Bookkeeping', tools: 'Xero, QuickBooks, Odoo, FreeAgent, Dext, Hubdoc, AutoEntry' },
+  { label: 'Year-end accounts and tax', tools: 'TaxCalc, IRIS, CCH' },
+  { label: 'Practice management', tools: 'BrightManager' },
+  { label: 'Company secretarial and compliance', tools: 'Inform Direct, AML screening tools' },
+  { label: 'Everyday collaboration', tools: 'Microsoft Outlook, Teams, Excel, Word' },
 ];
 ---
 <BaseLayout
-  title="Software & Systems Our Team Works In"
-  description="Hands-on experience across the bookkeeping, tax, practice management and compliance software UK accountancy practices actually use."
+  title="Xero, QuickBooks & IRIS Outsourcing Partner | SM Global"
+  description="Hands-on experience across Xero, QuickBooks, IRIS, CCH and TaxCalc. An outsourced accounting team that fits straight into your practice's existing software."
 >
-  <section class="section">
+  <section class="section hero">
     <div class="container">
       <p class="eyebrow">Team Specialisation</p>
-      <h1>What Our Team Specialises In</h1>
+      <h1>The software our team works in</h1>
       <p class="lead">
-        Our team isn't just trained on accounting principles — they're hands-on experienced across
-        the platforms UK practices actually use, so there's no learning curve when we join your workflow.
+        Our team has hands-on experience of the platforms UK practices use, so we can work in your
+        existing software from the start.
       </p>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>Where Our Team Specialises</h2>
-      <div class="grid grid--2" style="margin-top: var(--space-3);">
+      <h2>Tools by area of work</h2>
+      <dl class="spec-list">
         {groups.map((g) => (
-          <div class="card">
-            <IconBadge name={g.icon} />
-            <h3>{g.label}</h3>
-            <p>{g.tools}</p>
+          <div class="spec-list__row">
+            <dt>{g.label}</dt>
+            <dd>{g.tools}</dd>
           </div>
         ))}
-      </div>
+      </dl>
       <p class="lead" style="margin-top: var(--space-3);">
-        Beyond day-to-day processing, we also help design and automate working papers to match your
-        practice's own templates and requirements — cutting down manual rework and keeping files
-        consistent across your whole team.
+        We also help design and automate working papers to match your practice's own templates. That
+        cuts manual rework and keeps files consistent across your team.
       </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <CtaBand headline="Want to See How This Would Work With Your Systems?" />
+      <CtaBand headline="Want to see how this would work with your systems?" tone="light" />
     </div>
   </section>
 </BaseLayout>

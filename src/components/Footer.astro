@@ -1,24 +1,25 @@
 ---
-import { FOOTER_NAV, LEGAL_NAV, SITE } from '../site.config';
+import { FOOTER_NAV, LEGAL_NAV, SITE, SITE_PHONE_HREF } from '../site.config';
+import Logo from './Logo.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div>
       <p class="site-footer__brand">
-        <svg class="site-footer__mark" width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-          <defs>
-            <linearGradient id="footerMark" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#3a8f9c"/>
-              <stop offset="1" stop-color="#4fae94"/>
-            </linearGradient>
-          </defs>
-          <rect width="64" height="64" rx="16" fill="url(#footerMark)"/>
-          <text x="32" y="43" font-family="Arial, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">SM</text>
-        </svg>
-        <span>SM Global Accounting Services</span>
+        <Logo class="site-footer__mark" variant="light" height={40} />
+        <span>Global Accounting Services</span>
       </p>
       <p class="site-footer__tagline">Outsourced bookkeeping, statutory accounts and tax support for UK accountancy practices.</p>
+      {SITE.linkedin && (
+        <p class="site-footer__social">
+          <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" aria-label="SM Global Accounting Services on LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z" />
+            </svg>
+          </a>
+        </p>
+      )}
     </div>
     <nav aria-label="Footer">
       <ul>
@@ -29,7 +30,7 @@ const year = new Date().getFullYear();
     </nav>
     <div class="site-footer__contact">
       <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
-      <p>{SITE.phone}</p>
+      {SITE.phone && <p><a href={SITE_PHONE_HREF}>{SITE.phone}</a></p>}
       <p>{SITE.address}</p>
     </div>
   </div>
@@ -51,7 +52,7 @@ const year = new Date().getFullYear();
 <style>
   .site-footer {
     background: var(--color-primary-dark);
-    color: #cfe1de;
+    color: #d9d6cc;
     margin-top: var(--space-5);
     border-top: 3px solid transparent;
     border-image: linear-gradient(90deg, var(--color-secondary), var(--color-primary) 60%) 1;
@@ -71,25 +72,52 @@ const year = new Date().getFullYear();
     color: #fff;
     margin-bottom: 0.3rem;
   }
-  .site-footer__mark {
+  :global(.site-footer__mark) {
     flex-shrink: 0;
-    border-radius: 7px;
+    display: block;
   }
-  .site-footer__tagline { color: #a9c4bf; margin-bottom: 0; }
+  .site-footer__tagline { color: #bdbab0; margin-bottom: 0; }
+  .site-footer__social {
+    margin: var(--space-2) 0 0;
+  }
+  .site-footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #d9d6cc;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .site-footer__social a:hover {
+    background: var(--color-secondary);
+    color: var(--color-on-gold);
+  }
   .site-footer nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    columns: 2;
+    column-gap: var(--space-3);
   }
-  .site-footer nav a { color: #cfe1de; }
+  .site-footer nav li { break-inside: avoid; }
+  .site-footer nav a {
+    color: #d9d6cc;
+    display: inline-block;
+    padding: 0.55rem 0;
+    min-height: 44px;
+  }
+  .site-footer nav li { margin: 0; }
   .site-footer nav a:hover { color: #fff; }
-  .site-footer__contact p { margin: 0 0 0.4rem; color: #cfe1de; }
-  .site-footer__contact a { color: #cfe1de; }
+  .site-footer__contact p { margin: 0 0 0.4rem; color: #d9d6cc; }
+  .site-footer__contact a { color: #d9d6cc; display: inline-block; padding: 0.55rem 0; }
   .site-footer__bottom {
     border-top: 1px solid rgba(255,255,255,0.12);
     padding: var(--space-2) var(--space-3);
-    font-size: 0.85rem;
-    color: #8fada7;
+    font-size: 1rem;
+    color: #b9b7ad;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -105,7 +133,7 @@ const year = new Date().getFullYear();
     margin: 0;
     padding: 0;
   }
-  .site-footer__legal a { color: #8fada7; }
+  .site-footer__legal a { color: #b9b7ad; display: inline-block; padding: 0.55rem 0.2rem; min-height: 44px; }
   .site-footer__legal a:hover { color: #fff; }
-  .site-footer__legal-sep { color: #5f7d78; }
+  .site-footer__legal-sep { color: #7d7b74; }
 </style>

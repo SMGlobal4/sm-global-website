@@ -3,29 +3,106 @@
    Brand colours and fonts per the Website Master File (Part 1 — Project Context).
    ========================================================================== */
 
+/* Self-hosted Inter & Manrope (SIL Open Font License), vendored as static
+   files under public/fonts/ instead of loaded from Google's CDN. Same
+   weights as before, latin subset only (this site's content is English).
+   Removes an external, render-blocking network request entirely — no
+   account, no ongoing cost, nothing to keep renewing. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/inter-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/inter-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/inter-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/manrope-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/manrope-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/manrope-latin-800-normal.woff2') format('woff2');
+}
+
+/* Palette — taken directly from the SM Global logo, so the site and the
+   mark read as one brand: charcoal grey (#595959) as the working, "ink"
+   colour and gold (#BF9100) as the accent. The two logo colours are used as
+   exactly specified; everything else is a tint or shade derived from them,
+   and the neutrals are warm (not blue-grey) so they sit with the gold.
+
+   Contrast note: logo gold on white is only ~2.9:1, so it is used for fills,
+   rules, icons and large shapes — never for small text. Where gold-coloured
+   *text* is needed (eyebrows, small icons on a gold tint), use
+   --color-secondary-text (#7A5C00, ~6.3:1 on white). Where text sits ON a
+   gold fill, use --color-on-gold (near-black, ~5:1 on logo gold). */
 :root {
   /* Brand */
-  --color-primary: #1f4e5c;      /* deep teal/navy — primary accent */
-  --color-secondary: #2e7d6b;    /* muted green — secondary accent */
-  --color-primary-dark: #163a44;
-  --color-secondary-light: #e9f3f0;
+  --color-primary: #595959;        /* logo charcoal grey */
+  --color-primary-dark: #333333;   /* hover states, dark surfaces */
+  --color-secondary: #bf9100;      /* logo gold — fills, rules, accents */
+  --color-secondary-hover: #d1a31b; /* gold button hover (brighter, keeps dark-text contrast) */
+  --color-secondary-text: #6f5300; /* gold safe for small text on white/tints */
+  --color-secondary-light: #f8f0d8;/* pale gold tint for panels */
+  --color-on-gold: #1f1f1f;        /* text/icon colour placed on a gold fill */
 
   /* Text */
-  --color-text: #24303a;
-  --color-text-muted: #55636d;
-  --color-heading: #16232b;
+  --color-text: #2b2b2b;
+  --color-text-muted: #5c5c5c;
+  --color-heading: #1c1c1c;
 
   /* Surfaces */
   --color-bg: #ffffff;
-  --color-bg-alt: #f5f8f8;
-  --color-border: #e1e8e7;
+  --color-bg-alt: #f7f6f3;
+  --color-border: #e6e3dc;
+
+  /* Accent — the free-first-file offer (TrialOffer.astro) is the site's one
+     promotional moment. It keeps its own token set so it can be restyled on
+     its own, and it leads with solid gold plus a dark-text button, where
+     everywhere else gold is used more sparingly against the charcoal. */
+  --color-accent: #bf9100;
+  --color-accent-dark: #6f5300;
+  --color-accent-light: #f8f0d8;
 
   /* Type */
   --font-heading: 'Manrope', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* Layout */
-  --max-width: 1120px;
+  --max-width: 1320px;
   --radius: 10px;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -38,9 +115,10 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth in-page scrolling is opted into further down, only inside
+   @media (prefers-reduced-motion: no-preference) — see near the bottom of
+   this file. Deliberately not set unconditionally here, so reduced-motion
+   users keep the browser default (an instant jump). */
 
 body {
   margin: 0;
@@ -92,17 +170,33 @@ li { margin-bottom: 0.4rem; }
 }
 .section--alt {
   background: var(--color-bg-alt);
+  /* A very faint dot grid, so the flat grey sections have some tactile
+     texture instead of reading as an empty colour block — subtle enough to
+     stay out of the way of the content sitting on top of it. */
+  background-image: radial-gradient(circle, rgba(89, 89, 89, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 .eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-secondary);
+  color: var(--color-secondary-text);
   margin-bottom: var(--space-1);
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  flex-shrink: 0;
 }
 
 .lead {
@@ -113,23 +207,30 @@ li { margin-bottom: 0.4rem; }
 
 .btn {
   display: inline-block;
+  position: relative;
+  overflow: hidden;
   font-family: var(--font-heading);
   font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+  cursor: pointer;
   padding: 0.85rem 1.6rem;
+  min-height: 48px;
   border-radius: var(--radius);
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .btn:hover { text-decoration: none; transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
 
 .btn--primary {
   background: var(--color-primary);
   color: #fff;
-  box-shadow: 0 8px 20px -8px rgba(31, 78, 92, 0.55);
+  box-shadow: 0 8px 20px -8px rgba(89, 89, 89, 0.55);
 }
 .btn--primary:hover {
   background: var(--color-primary-dark);
-  box-shadow: 0 12px 24px -8px rgba(31, 78, 92, 0.6);
+  box-shadow: 0 12px 24px -8px rgba(89, 89, 89, 0.6);
 }
 
 .btn--secondary {
@@ -151,13 +252,18 @@ li { margin-bottom: 0.4rem; }
   border: 1px solid var(--color-border);
   border-radius: 14px;
   padding: var(--space-3);
-  box-shadow: 0 2px 6px rgba(22, 35, 43, 0.04);
+  box-shadow: 0 2px 6px rgba(30, 30, 30, 0.04);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 32px -16px rgba(22, 35, 43, 0.22);
-  border-color: rgba(46, 125, 107, 0.35);
+  box-shadow: 0 16px 32px -16px rgba(30, 30, 30, 0.22);
+  border-color: rgba(191, 145, 0, 0.35);
+}
+/* A small tactile detail: the icon badge inside a card nudges and tilts
+   slightly when its card is hovered, rather than sitting completely still. */
+.card:hover .icon-badge {
+  transform: scale(1.05);
 }
 
 .grid {
@@ -169,19 +275,57 @@ li { margin-bottom: 0.4rem; }
 
 /* Scroll-reveal: only ever active for .js (script ran) + motion-ok users — see
    BaseLayout.astro. No-JS and prefers-reduced-motion users get plain, always-visible
-   content, so this can never leave anything permanently hidden. */
+   content, so this can never leave anything permanently hidden.
+
+   Hero copy (.hero .lead) is excluded here and gets its own load-triggered
+   entrance animation instead (see the .hero rules below) — it's already in
+   the viewport on page load, so a scroll-observer would just leave it fully
+   visible with no visible motion, and animating the same element two
+   different ways would fight itself. */
 @media (prefers-reduced-motion: no-preference) {
-  .js .lead,
+  .js .lead:not(.hero .lead),
   .js .stat {
     opacity: 0;
     transform: translateY(14px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .js .lead.is-revealed,
+  .js .lead:not(.hero .lead).is-revealed,
   .js .stat.is-revealed {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Cards and empty-states get the same fade-up, but scoped with :not()
+     rather than an explicit "revealed" transform value — .card already has
+     its own :hover lift (translateY(-3px), above), and a competing
+     .is-revealed rule at equal specificity would fight that hover state
+     depending on source order. Scoping the hidden state to :not(.is-revealed)
+     means it simply stops applying once revealed, leaving hover free to work
+     normally with no equal-specificity fight. */
+  .js .card:not(.is-revealed),
+  .js .empty-state:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  /* `transition` is a full property-list replacement, not additive — this
+     has to restate .card's own hover-transition properties (box-shadow,
+     border-color) alongside the reveal ones, or this rule (higher
+     specificity than the base .card rule, and later in the cascade) would
+     silently drop them and make box-shadow/border-color hover changes snap
+     instantly instead of transitioning. */
+  .js .card,
+  .js .empty-state {
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+
+  /* Stagger cards within a grid so they cascade in one after another rather
+     than popping in all at once — most of this site's grids top out around
+     5-6 cards, so a handful of nth-child steps covers virtually all of them. */
+  .js .grid > .card:nth-child(2) { transition-delay: 0.08s; }
+  .js .grid > .card:nth-child(3) { transition-delay: 0.16s; }
+  .js .grid > .card:nth-child(4) { transition-delay: 0.24s; }
+  .js .grid > .card:nth-child(5) { transition-delay: 0.32s; }
+  .js .grid > .card:nth-child(n + 6) { transition-delay: 0.4s; }
 }
 
 .form-field {
@@ -191,7 +335,7 @@ li { margin-bottom: 0.4rem; }
   display: block;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: var(--color-heading);
   margin-bottom: 0.3rem;
 }
@@ -200,8 +344,9 @@ li { margin-bottom: 0.4rem; }
 .form-field textarea {
   width: 100%;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--color-text);
+  min-height: 44px;
   padding: 0.65rem 0.8rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -210,9 +355,8 @@ li { margin-bottom: 0.4rem; }
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
-  outline: none;
   border-color: var(--color-secondary);
-  box-shadow: 0 0 0 3px rgba(46, 125, 107, 0.15);
+  box-shadow: 0 0 0 3px rgba(191, 145, 0, 0.15);
 }
 .form-field textarea {
   resize: vertical;
@@ -257,116 +401,261 @@ li { margin-bottom: 0.4rem; }
   display: block;
   margin-top: 0.15rem;
   color: var(--color-text-muted);
-  font-size: 0.88rem;
+  font-size: 1rem;
 }
 
-.trust-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
+/* FAQ accordion — native <details>/<summary>, same zero-JS pattern as the
+   header's nav dropdown, so it works identically with JS disabled (just
+   without the rotating chevron transition). */
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+.faq-item summary {
   list-style: none;
-  padding: 0;
-  margin: var(--space-3) 0 0;
-}
-.trust-strip li {
-  margin: 0;
-  padding: 0.5rem 0.9rem 0.5rem 2.1rem;
-  position: relative;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--color-primary);
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(22, 35, 43, 0.05);
+  font-weight: 700;
+  color: var(--color-heading);
 }
-.trust-strip li::before {
-  content: '\2713';
-  position: absolute;
-  left: 0.85rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.1rem;
-  height: 1.1rem;
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--color-primary); }
+.faq-item summary:focus-visible { outline: 2px solid var(--color-secondary-text); outline-offset: 4px; }
+.faq-item summary h3 { margin: 0; font: inherit; color: inherit; }
+.faq-item summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after { transform: rotate(-135deg); }
+.faq-item .faq-item__answer { margin: 0 0 var(--space-2); color: var(--color-text-muted); }
+
+.steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  counter-reset: steps;
+}
+.steps-list li {
+  counter-increment: steps;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+}
+.steps-list li::before {
+  content: counter(steps);
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-secondary-light);
+  color: var(--color-secondary-text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  border-radius: 50%;
-  background: var(--color-secondary);
-  color: #fff;
+  transform: translateY(2px);
 }
 
-.faq-item {
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-2) 0;
+/* Narrative/case-study timeline — for content that's telling a sequential
+   story (situation → what we did → where it stands), not listing parallel
+   features. Deliberately NOT another .card grid: reusing the same boxed
+   card everywhere regardless of whether the content is a list or a story is
+   exactly the kind of one-size-fits-all layout that makes a site feel
+   assembled from a component library rather than actually designed for its
+   content. A vertical connected line with a dot per step reads as a
+   timeline/case-file at a glance, which is what this content actually is. */
+.story-timeline {
+  margin-top: var(--space-4);
+  max-width: 720px;
 }
-.faq-item h3 { margin-bottom: 0.4rem; }
-.faq-item p { margin-bottom: 0; color: var(--color-text-muted); }
+.story-step {
+  position: relative;
+  padding-left: 2.4rem;
+  padding-bottom: var(--space-4);
+}
+.story-step:last-child { padding-bottom: 0; }
+.story-step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  box-shadow: 0 0 0 4px var(--color-secondary-light);
+}
+.story-step::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 1.3rem;
+  bottom: -1.3rem;
+  width: 2px;
+  background: linear-gradient(var(--color-border), transparent);
+}
+.story-step:last-child::after { display: none; }
+.story-step h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.story-step p { color: var(--color-text-muted); margin: 0; }
+
+/* Same scroll-reveal treatment as .card (fade-up, staggered), so this
+   doesn't feel like a different motion language from the rest of the page —
+   see the .card rules above and BaseLayout.astro's observer target list. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .story-step:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .js .story-step {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .js .story-timeline .story-step:nth-child(2) { transition-delay: 0.12s; }
+  .js .story-timeline .story-step:nth-child(3) { transition-delay: 0.24s; }
+}
+
+/* Quiet link-out pairing — a left accent rule instead of a full card, for
+   two short "read more" teasers sitting right between two boxed panels
+   (the trial offer above, the CTA band below). Three boxed panels in a row
+   is exactly the kind of "everything is the same rounded white card"
+   repetition that reads as templated rather than composed; this one stays
+   plain text with a colour rule instead of adding a fourth box. */
+.link-teasers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+.link-teaser {
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--color-secondary);
+}
+.link-teaser h3 { margin-bottom: 0.3rem; }
+.link-teaser p { color: var(--color-text-muted); }
 
 .placeholder-note {
   background: #fff7e6;
   border: 1px dashed #d9a441;
   border-radius: var(--radius);
   padding: var(--space-2);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #6b4d0e;
 }
 
-.cta-band {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 65%, #10262d 100%);
-  color: #fff;
-  border-radius: 18px;
-  padding: var(--space-4);
+/* An honest "nothing here yet" message, styled as a deliberate design
+   moment rather than an internal to-do flag (that's what .placeholder-note
+   is for). Used where the copy itself is meant for visitors — e.g.
+   "no testimonials yet" — so it reads as calm and intentional, not
+   unfinished. */
+.empty-state {
   text-align: center;
+  padding: var(--space-5) var(--space-3);
+  background: linear-gradient(180deg, var(--color-secondary-light), #ffffff);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
 }
-.cta-band::before {
-  content: '';
-  position: absolute;
-  inset: -40% -10% auto auto;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(46, 125, 107, 0.55), transparent 70%);
-  pointer-events: none;
+.empty-state .icon-badge {
+  margin-inline: auto;
 }
-.cta-band > * { position: relative; }
-.cta-band h2 { color: #fff; }
-.cta-band p { color: #cfe4e0; }
-.cta-band .btn--primary { background: var(--color-secondary); box-shadow: 0 10px 24px -8px rgba(46, 125, 107, 0.65); }
-.cta-band .btn--primary:hover { background: #256356; }
+.empty-state h2,
+.empty-state h3 {
+  margin-top: var(--space-2);
+}
+.empty-state p {
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin-inline: auto;
+}
 
 /* Decorative hero background — soft brand-colour blobs, CSS only (no imagery). */
+/* An original, in-house generated banner (an abstract brand-colour mesh
+   gradient with soft contour lines and film grain — see
+   public/images/hero-mesh.*, generated with a small Python script, not
+   stock photography) sits behind every page's opening section. Pale on the
+   left where headings sit, richer colour toward the right, so it reads as
+   a designed image rather than flat CSS while staying out of the way of
+   the text. Swap this file for real photography later without touching
+   any markup — every page picks it up from this one rule. */
 .hero {
   position: relative;
   overflow: hidden;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.72)), url('/images/hero-mesh.webp');
+  background-size: cover;
+  background-position: left center;
+  background-repeat: no-repeat;
 }
-.hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(10px);
-  z-index: 0;
-  pointer-events: none;
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  align-items: center;
+  gap: var(--space-4);
 }
-.hero::before {
-  width: 420px;
-  height: 420px;
-  top: -140px;
-  right: -120px;
-  background: radial-gradient(circle, rgba(46, 125, 107, 0.16), transparent 70%);
+.hero__art {
+  justify-self: center;
 }
-.hero::after {
-  width: 300px;
-  height: 300px;
-  bottom: -120px;
-  right: 10%;
-  background: radial-gradient(circle, rgba(31, 78, 92, 0.12), transparent 70%);
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .hero__art {
+    display: none;
+  }
 }
-.hero__inner { position: relative; z-index: 1; }
+
+/* Hero entrance: a quick, one-time staggered fade-up on load, not tied to
+   scroll (the hero is already in view on every page load, so a scroll
+   observer would have nothing to trigger on). Pure CSS — no script needed,
+   so it can never get stuck: without CSS-animation support the elements
+   just render at their normal opacity, since nothing outside this keyframe
+   sets opacity:0 as a static value. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .eyebrow { animation: hero-fade-up 0.7s ease-out both; }
+  .hero h1 { animation: hero-fade-up 0.7s ease-out 0.1s both; }
+  .hero .lead { animation: hero-fade-up 0.7s ease-out 0.2s both; }
+  .hero .btn-row { animation: hero-fade-up 0.7s ease-out 0.3s both; }
+  .hero .plain-list { animation: hero-fade-up 0.7s ease-out 0.4s both; }
+}
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth in-page scrolling (e.g. footer/nav anchor links) for motion-ok
+   users; reduced-motion users get the instant jump, per the media query. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Shared by every hand-built page illustration (Security, Process, Industries,
+   SecurityIllustration, ProcessIllustration, IndustriesIllustration) — the
+   wrapper sizing was previously copy-pasted
+   into each of those four components; each one now only defines which of
+   its own elements. (The old drift animation has been removed.) */
+.hero-illustration {
+  width: 100%;
+  height: auto;
+  max-width: 480px;
+  display: block;
+  margin-inline: auto;
+}
 
 .visually-hidden {
   position: absolute;
@@ -397,3 +686,272 @@ li { margin-bottom: 0.4rem; }
 @media (max-width: 640px) {
   .section { padding: var(--space-4) 0; }
 }
+
+/* ==========================================================================
+   Home page layouts and shared pieces added in the October redesign:
+   plain lists, split headings, numbered steps, a full-width charcoal band,
+   an asymmetric three-up grid. Cards are no longer the answer to every
+   section, so these give the page a few different shapes.
+   ========================================================================== */
+
+/* Home hero: left-aligned, more white space, image placeholder on the right */
+.hero--home { padding: var(--space-5) 0; }
+.hero--home h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: 20ch;
+  margin-bottom: var(--space-3);
+}
+.hero--home .lead { font-size: 1.2rem; color: var(--color-text); max-width: 34rem; }
+.hero__photo { width: 100%; }
+
+/* A plain, unboxed list with a small gold marker — replaces pill badges */
+.plain-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  max-width: 34rem;
+}
+.plain-list li {
+  position: relative;
+  margin: 0;
+  padding: 0.35rem 0 0.35rem 1.4rem;
+  color: var(--color-text);
+}
+.plain-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.05em;
+  width: 0.7rem;
+  height: 3px;
+  background: var(--color-secondary);
+}
+
+/* Heading on the left, content on the right — breaks the centred, even grid */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+.split__head { position: sticky; top: 6rem; }
+.text-list__item {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+}
+.text-list__item:first-child { border-top: 2px solid var(--color-heading); padding-top: var(--space-3); }
+.text-list__item h3 { margin-bottom: 0.4rem; }
+.text-list__item p { margin: 0; color: var(--color-text-muted); max-width: 60ch; }
+
+/* Statistics band: three items, identical format */
+.stat-band__note {
+  margin: var(--space-3) 0 0;
+  text-align: center;
+  color: var(--color-text);
+}
+.stat-band .stat__value { color: var(--color-heading); }
+
+/* Asymmetric three-up: one large item beside two stacked ones */
+.grid--feature {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+.grid--feature .card--large {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  background: var(--color-secondary-light);
+  border-color: transparent;
+}
+.grid--feature .card--large h3 { font-size: 1.6rem; }
+.grid--feature .card--large p { font-size: 1.1rem; max-width: 34ch; }
+
+/* Full-width charcoal band, text left-aligned */
+.band-dark {
+  background: var(--color-primary-dark);
+  color: #e8e5db;
+  padding: var(--space-5) 0;
+}
+.band-dark__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+.band-dark h2 { color: #fff; font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; margin: 0; }
+.band-dark__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e3bb45; /* light gold: 7.5:1 on charcoal */
+  margin: 0 0 var(--space-2);
+}
+.band-dark__body > div { padding: var(--space-2) 0 var(--space-3); border-top: 1px solid rgba(255, 255, 255, 0.18); }
+.band-dark__body > div:first-child { border-top: 0; padding-top: 0; }
+.band-dark__body h3 { color: #e3bb45; font-size: 1rem; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
+.band-dark__body p { margin: 0; color: #e8e5db; max-width: 56ch; }
+
+/* Numbered steps: large numerals, rows rather than cards */
+.numbered-steps {
+  list-style: none;
+  counter-reset: step;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  border-top: 2px solid var(--color-heading);
+}
+.numbered-steps > li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 18rem) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: baseline;
+  margin: 0;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.numbered-steps > li::before {
+  content: counter(step);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-secondary-text);
+}
+.numbered-steps h3 { margin: 0; }
+.numbered-steps p { margin: 0; color: var(--color-text-muted); max-width: 60ch; }
+
+/* Buttons: dark variant for use on gold; CTA band is a left-aligned row */
+.btn--dark { background: var(--color-on-gold); color: #fff; }
+.btn--dark:hover { background: #000; }
+
+.cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background: var(--color-primary-dark);
+  color: #fff;
+  border-radius: 18px;
+  padding: var(--space-4);
+  border-left: 8px solid var(--color-secondary);
+}
+.cta-band__text { max-width: 44rem; }
+.cta-band h2 { color: #fff; margin-bottom: var(--space-1); }
+.cta-band p { color: #e4dfd0; margin: 0; }
+.cta-band .btn { flex-shrink: 0; }
+.cta-band .btn--primary { background: var(--color-secondary); color: var(--color-on-gold); box-shadow: none; }
+.cta-band .btn--primary:hover { background: var(--color-secondary-hover); }
+.cta-band--light {
+  background: var(--color-secondary-light);
+  border-left-color: var(--color-secondary);
+}
+.cta-band--light h2 { color: var(--color-heading); }
+.cta-band--light p { color: var(--color-text-muted); }
+.cta-band--light .btn--primary { background: var(--color-primary); color: #fff; }
+.cta-band--light .btn--primary:hover { background: var(--color-primary-dark); }
+
+@media (max-width: 900px) {
+  .split, .band-dark__inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  .split__head { position: static; }
+  .grid--feature { grid-template-columns: 1fr; }
+  .grid--feature .card--large { grid-row: auto; padding: var(--space-3); }
+  .numbered-steps > li { grid-template-columns: 3.5rem minmax(0, 1fr); row-gap: 0.4rem; }
+  .numbered-steps > li::before { font-size: 2.4rem; grid-row: span 2; }
+  .cta-band { flex-direction: column; align-items: flex-start; padding: var(--space-3); }
+}
+@media (max-width: 640px) {
+  .hero--home { padding: var(--space-4) 0; }
+  .cta-band .btn { width: 100%; text-align: center; }
+}
+
+/* Tools-by-area rows (Team Specialisation) and plain prose blocks */
+.spec-list { margin: var(--space-3) 0 0; border-top: 2px solid var(--color-heading); }
+.spec-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.spec-list dt { font-family: var(--font-heading); font-weight: 700; color: var(--color-heading); font-size: 1.1rem; }
+.spec-list dd { margin: 0; color: var(--color-text-muted); }
+.prose { max-width: 44rem; }
+.prose p { font-size: 1.1rem; }
+.person-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-heading);
+  margin: var(--space-2) 0 0.2rem;
+}
+.person-name--todo { color: #7a5c00; border-bottom: 1px dashed #b88a00; display: inline-block; }
+@media (max-width: 640px) {
+  .spec-list__row { grid-template-columns: 1fr; gap: 0.2rem; }
+}
+
+/* Testimonial placeholders (replace with real quotes before launch) */
+.quote-list { display: grid; gap: var(--space-3); max-width: 52rem; }
+.quote {
+  margin: 0;
+  padding: var(--space-3) 0 var(--space-3) var(--space-3);
+  border-left: 5px solid var(--color-secondary);
+}
+.quote blockquote { margin: 0 0 var(--space-2); font-size: 1.25rem; line-height: 1.5; color: var(--color-heading); }
+.quote blockquote p { margin: 0; }
+.quote figcaption { display: flex; flex-direction: column; gap: 0.15rem; color: var(--color-text-muted); }
+.quote__todo { color: #7a5c00; border: 1px dashed #b88a00; background: #fffaf0; padding: 0.15rem 0.5rem; display: inline-block; }
+
+/* Team cards: three across on desktop, two on tablets, one on phones */
+.grid--team { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .grid--team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .grid--team { grid-template-columns: 1fr; } }
+
+/* Keyboard focus: one clear, visible outline on every interactive element.
+   Light backgrounds use the dark gold; charcoal areas use a light gold. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-secondary-text);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.band-dark a:focus-visible,
+.cta-band a:focus-visible,
+.site-footer a:focus-visible {
+  outline-color: #e3bb45;
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn-row { align-items: center; }
+
+/* Rhythm tidy-up: left-aligned stats, tighter step rows, one arrow-link style */
+.stat-strip { text-align: left; }
+.stat-band__note { text-align: left; max-width: 52rem; }
+.numbered-steps > li { grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr); gap: var(--space-3) var(--space-4); }
+.numbered-steps p,
+.text-list__item p,
+.spec-list dd { color: var(--color-text); }
+.grid--feature .card--large { justify-content: center; }
+.site-footer__legal ul { align-items: center; }
+.site-footer__legal-sep { line-height: 1; }
+@media (max-width: 900px) {
+  .numbered-steps > li { grid-template-columns: 3.5rem minmax(0, 1fr); gap: 0.4rem var(--space-3); }
+}
+
+.form-notice { font-size: 1rem; color: var(--color-text-muted); max-width: 46ch; }

@@ -1,14 +1,21 @@
 ---
+import { SITE } from '../site.config';
+
 interface Props {
   headline: string;
   body?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  // 'dark' (default) is the charcoal band used site-wide. 'light' swaps in a
+  // pale gold tint, for the odd page that shouldn't end on the same dark block.
+  tone?: 'dark' | 'light';
 }
-const { headline, body, ctaLabel = 'Book a Free Consultation', ctaHref = '/contact' } = Astro.props;
+const { headline, body, ctaLabel = 'Book a Free Consultation', ctaHref = SITE.bookingUrl, tone = 'dark' } = Astro.props;
 ---
-<div class="cta-band">
-  <h2>{headline}</h2>
-  {body && <p>{body}</p>}
+<div class={`cta-band ${tone === 'light' ? 'cta-band--light' : ''}`}>
+  <div class="cta-band__text">
+    <h2>{headline}</h2>
+    {body && <p>{body}</p>}
+  </div>
   <a class="btn btn--primary" href={ctaHref}>{ctaLabel}</a>
 </div>

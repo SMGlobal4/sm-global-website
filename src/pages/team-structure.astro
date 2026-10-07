@@ -1,61 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import IconBadge from '../components/IconBadge.astro';
 ---
 <BaseLayout
-  title="Meet the Team Behind Your Work"
-  description="A lean team with a genuine second-person quality check built in — who's actually working on your files."
+  title="Our Team Structure | Outsourced Accounting for UK Practices"
+  description="A lean, accountable outsourced accounting team with a genuine second-person quality review built in. See who is working on your files."
 >
-  <section class="section">
+  <section class="section hero">
     <div class="container">
       <p class="eyebrow">Team Structure</p>
-      <h1>A Small Team, Built for Accountability</h1>
+      <h1>A small team, and you know who does what</h1>
       <p class="lead">
-        Outsourcing only works if you know who's doing what. We're a lean team — people
-        genuinely cover more than one role, and we'd rather tell you that honestly than dress it up
-        as a bigger department than it is.
+        Outsourcing only works if you know who is doing what. We are a small team and people cover
+        more than one role. We'd rather say so than dress it up as a bigger department.
       </p>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>Who's Actually on Your Files</h2>
-      <div class="grid grid--2" style="margin-top: var(--space-3);">
-        <div class="card">
-          <IconBadge name="users" />
-          <h3>Engagement Lead, Team Manager &amp; Senior Accountants/Bookkeepers</h3>
-          <p>
-            This group covers these functions between them — your single point of contact for the
-            relationship, day-to-day oversight of deadlines, and the preparation work itself
-            (bookkeeping, VAT, year-end accounts, tax computations) inside your existing systems.
-          </p>
+      <div class="split">
+        <div class="split__head">
+          <h2>Who works on your files</h2>
         </div>
-        <div class="card">
-          <IconBadge name="briefcase" />
-          <h3>Junior Accountants/Bookkeepers &amp; Admin/Company Secretarial</h3>
-          <p>
-            Another group handles supporting preparation work alongside admin and company
-            secretarial tasks — including AML screening and CDD/EDD file preparation for client
-            onboarding.
-          </p>
-        </div>
-        <div class="card">
-          <IconBadge name="badge-check" />
-          <h3>Quality Review</h3>
-          <p>
-            A genuine second, independent check on every file before it's sent to you — built into
-            how the senior team reviews work, not a box-ticking step.
-          </p>
-        </div>
-        <div class="card">
-          <IconBadge name="server" />
-          <h3>IT &amp; Data Security Lead</h3>
-          <p>
-            One dedicated senior IT engineer, full-time, responsible for our security infrastructure
-            and protocols and the point of contact for any data-handling questions.
-          </p>
+        <div class="text-list">
+          <div class="text-list__item">
+            <h3>Engagement lead, team manager and senior accountants/bookkeepers</h3>
+            <p>This group covers these functions between them: your single point of contact for the relationship, day-to-day oversight of deadlines, and the preparation work itself (bookkeeping, VAT, year-end accounts, tax computations) inside your existing systems.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>Junior accountants/bookkeepers and admin/company secretarial</h3>
+            <p>Another group handles supporting preparation work alongside admin and company secretarial tasks, including AML screening and CDD/EDD file preparation for client onboarding.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>Quality review</h3>
+            <p>A second, independent check on every file before it is sent to you. It is built into how the senior team reviews work.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>IT and data security lead</h3>
+            <p>One dedicated senior IT engineer, full-time, responsible for our security infrastructure and protocols. They are also the point of contact for any data-handling questions.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -63,7 +47,7 @@ import IconBadge from '../components/IconBadge.astro';
 
   <section class="section">
     <div class="container">
-      <CtaBand headline="Want to Know Who'd Be Working on Your Files?" />
+      <CtaBand headline="Want to know who would work on your files?" />
     </div>
   </section>
 </BaseLayout>

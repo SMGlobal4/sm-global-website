@@ -1,59 +1,72 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import IconBadge from '../components/IconBadge.astro';
+import SecurityIllustration from '../components/SecurityIllustration.astro';
 ---
 <BaseLayout
-  title="Data Security at SM Global Accounting Services"
-  description="GDPR-compliant and built so client data never leaves your own systems — how we keep your practice's data secure."
+  title="GDPR-Compliant Accounting Outsourcing | Data Security"
+  description="GDPR-compliant and built so client data never leaves your own systems. See how our outsourced accounting team keeps your UK practice's data secure."
 >
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Data Security</p>
-      <h1>Your Data, Handled With Care</h1>
-      <p class="lead">
-        Your client data is sensitive — every process we run is built around keeping it inside your
-        own systems, not ours.
-      </p>
+  <section class="section hero">
+    <div class="container hero__inner">
+      <div>
+        <p class="eyebrow">Data Security</p>
+        <h1>Your client data stays in your systems</h1>
+        <p class="lead">
+          Every process we run is built around keeping client data inside your own systems, not ours.
+        </p>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <SecurityIllustration />
+      </div>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>How Your Data Stays Safe</h2>
-      <div class="grid grid--2" style="margin-top: var(--space-3);">
-        <div class="card">
-          <IconBadge name="lock" />
-          <h3>Nothing leaves your system</h3>
-          <p>We access your practice's own software remotely, over encrypted connections. Files are never copied, downloaded, or moved to a third-party platform.</p>
+      <div class="split">
+        <div class="split__head">
+          <h2>How your data stays safe</h2>
+          <p class="lead">Five things we do, in plain terms.</p>
         </div>
-        <div class="card">
-          <IconBadge name="shield" />
-          <h3>Security You Can Rely On</h3>
-          <p>Firewalls, anti-virus, and IP-restricted access on every system we use to connect to yours.</p>
-        </div>
-        <div class="card">
-          <IconBadge name="users" />
-          <h3>Our People</h3>
-          <p>Every team member signs a confidentiality agreement, and we maintain a dedicated IT &amp; Data Security Lead responsible for our security infrastructure and protocols.</p>
-        </div>
-        <div class="card">
-          <IconBadge name="badge-check" />
-          <h3>GDPR, Done Properly</h3>
-          <p>Our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted. See our <a href="/privacy-policy">Privacy Policy</a> for the full detail.</p>
+        <div class="text-list">
+          <div class="text-list__item">
+            <h3>Nothing leaves your system</h3>
+            <p>We access your practice's own software remotely, over encrypted connections. Files are never copied, downloaded or moved to a third-party platform.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>Firewalls, anti-virus and IP-restricted access</h3>
+            <p>These are in place on every system we use to connect to yours.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>Confidentiality agreements and a security lead</h3>
+            <p>Every team member signs a confidentiality agreement, and a dedicated IT &amp; Data Security Lead is responsible for our security infrastructure and protocols.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>GDPR compliance</h3>
+            <p>Our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained and deleted. Our <a href="/privacy-policy">Privacy Policy</a> has the full detail.</p>
+          </div>
+          <div class="text-list__item">
+            <h3>Professional indemnity insurance</h3>
+            <p>We carry professional indemnity insurance, so your practice isn't left exposed by a mistake on our end.</p>
+          </div>
         </div>
       </div>
-      <p class="placeholder-note" style="margin-top: var(--space-3);">
-        A few claims from the original draft — specific physical-office security measures (biometric
-        access, disabled USB ports) and an exact encryption standard — are left out here until they're
-        confirmed as accurate for our current setup. Don't publish a security claim we can't stand behind.
-      </p>
+      <!-- A few claims from the original draft — specific physical-office
+           security measures (biometric access, disabled USB ports) and an
+           exact encryption standard — are still left out here deliberately,
+           until they're confirmed as accurate for our current setup. Don't
+           publish a security claim we can't stand behind. Tracked in
+           LAUNCH_CHECKLIST.md; this used to be a visible on-page note, but a
+           live "some claims removed, unconfirmed" admission undermines the
+           exact trust a security-conscious visitor comes to this page
+           looking for, so it's a code comment now instead of public text. -->
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <CtaBand headline="Questions About How We Handle Your Data?" />
+      <CtaBand headline="Questions about how we handle your data?" />
     </div>
   </section>
 </BaseLayout>

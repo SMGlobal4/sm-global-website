@@ -1,11 +1,17 @@
 ---
 // Small hand-built line-icon set — no external icon library, so the site
 // stays dependency-free and fast. Add new shapes here as needed.
+//
+// Exported so any component that wraps Icon (e.g. IconBadge.astro) can type
+// its own `name` prop against the same strict union instead of widening it
+// to `string`, which would silently swallow a typo'd icon name.
+export type IconName =
+  | 'shield' | 'shield-check' | 'clock' | 'users' | 'badge-check'
+  | 'document' | 'percent' | 'book' | 'building' | 'briefcase'
+  | 'lock' | 'server' | 'layers' | 'bolt' | 'sliders' | 'heart' | 'quote'
+  | 'medical' | 'cup';
 interface Props {
-  name:
-    | 'shield' | 'shield-check' | 'clock' | 'users' | 'badge-check'
-    | 'document' | 'percent' | 'book' | 'building' | 'briefcase'
-    | 'lock' | 'server' | 'layers' | 'bolt' | 'sliders' | 'heart';
+  name: IconName;
   size?: number;
 }
 const { name, size = 26 } = Astro.props;
@@ -114,5 +120,23 @@ const { name, size = 26 } = Astro.props;
   )}
   {name === 'heart' && (
     <path d="M12 20.5 C12 20.5 3.5 15.3 3.5 9.3 C3.5 6.2 5.9 4 8.7 4 C10.4 4 11.6 4.9 12 5.8 C12.4 4.9 13.6 4 15.3 4 C18.1 4 20.5 6.2 20.5 9.3 C20.5 15.3 12 20.5 12 20.5 Z" />
+  )}
+  {name === 'quote' && (
+    <>
+      <path d="M6.5 8.5 C4.5 8.5 3 10.2 3 12.4 C3 14.4 4.4 16 6.2 16 C6 18 5 19 3.5 19.6" />
+      <path d="M16.5 8.5 C14.5 8.5 13 10.2 13 12.4 C13 14.4 14.4 16 16.2 16 C16 18 15 19 13.5 19.6" />
+    </>
+  )}
+  {name === 'medical' && (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7.5 V16.5 M7.5 12 H16.5" />
+    </>
+  )}
+  {name === 'cup' && (
+    <>
+      <path d="M5.5 8.5 H16 V14.5 C16 17.5 13.6 19.5 10.75 19.5 C7.9 19.5 5.5 17.5 5.5 14.5 Z" />
+      <path d="M16 10 H17.5 C19 10 20 11.1 20 12.5 C20 13.9 19 15 17.5 15 H16" />
+    </>
   )}
 </svg>

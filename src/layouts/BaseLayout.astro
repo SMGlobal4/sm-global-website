@@ -7,9 +7,30 @@ import { SITE } from '../site.config';
 interface Props {
   title: string;
   description: string;
+  // Optional per-page social share image (e.g. "/images/og-offer.png"),
+  // for a page whose own hook — an offer, a specific role — is worth
+  // showing on the link preview instead of the generic brand image every
+  // other page uses. Defaults to the site-wide og-image.png.
+  image?: string;
+  // Alt text for that image — only needed when `image` is overridden.
+  imageAlt?: string;
+  // True for a page that exists in the codebase but isn't ready for a
+  // visitor or a search engine to land on yet (e.g. Testimonials while it's
+  // still empty) — keeps it out of Google's index and off crawlers'
+  // radar even though the route itself still builds. Not a substitute for
+  // also removing its nav link — see the page's own comment for why both
+  // are done together.
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+const {
+  title,
+  description,
+  image = '/og-image.png',
+  imageAlt = `${SITE.name}: outsourced accounting for UK practices`,
+  noindex = false,
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
 
 // AccountingService structured data (schema.org), built from the same
 // site-wide facts as the rest of the site — see src/site.config.ts.
@@ -20,15 +41,18 @@ const structuredData = {
   name: SITE.name,
   url: SITE.domain,
   email: SITE.email,
-  telephone: SITE.phone,
+  ...(SITE.phone ? { telephone: SITE.phone } : {}),
   description,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'A18 Orchid Square, Ambernath, Mumbai',
-    postalCode: '421506',
+    addressLocality: 'Mumbai',
     addressCountry: 'IN',
   },
   areaServed: ['GB', 'US', 'AE'],
+  // Populated automatically once a real social profile URL is added in the
+  // CMS (Site Settings → Social Links) — empty for now, so nothing fake is
+  // ever published here.
+  ...(SITE.linkedin ? { sameAs: [SITE.linkedin] } : {}),
 };
 ---
 <!doctype html>
@@ -36,21 +60,62 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#595959" />
+
+    <!-- Favicons: SVG for modern browsers, PNG fallbacks for platforms that
+         don't support SVG icons (iOS home-screen, some older browsers). All
+         generated from the same original in-house logomark. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Self-hosted fonts (see global.css) — preload only the weights used
+         above the fold so text paints as soon as possible. That's Inter 400
+         (body copy) and three Manrope weights: 600 (header nav, every page),
+         700 (hero eyebrow, every page) and 800 (hero h1). -->
+    <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin />
+
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
-      rel="stylesheet"
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')}
     />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    {SITE.cloudflareAnalyticsToken && (
+      // Cloudflare Web Analytics — free, cookie-free (no personal data, no
+      // client-side state), so no GDPR/cookie-consent banner is needed. Only
+      // loads once a token is pasted into the CMS (Site Settings → Cloudflare
+      // Web Analytics Token); until then this script tag is never rendered.
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${SITE.cloudflareAnalyticsToken}"}`}
+      />
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -67,7 +132,11 @@ const structuredData = {
       // here throws, `.no-js` never becomes `.js`, so the CSS hidden state never applies.
       document.documentElement.classList.replace('no-js', 'js');
 
-      const targets = document.querySelectorAll('.lead, .stat');
+      // .lead here also matches hero paragraphs, but they have no matching
+      // CSS hidden state (see global.css) — the hero uses its own
+      // load-triggered entrance animation instead, so adding .is-revealed
+      // to a hero .lead is a harmless no-op.
+      const targets = document.querySelectorAll('.lead, .stat, .card, .empty-state, .story-step');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (reduceMotion || !('IntersectionObserver' in window)) {

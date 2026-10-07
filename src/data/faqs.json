@@ -1,7 +1,7 @@
 {
   "categories": [
     {
-      "category": "Working With Us",
+      "category": "Working with us",
       "items": [
         {
           "q": "What's the difference between your three work modules?",
@@ -9,7 +9,7 @@
         },
         {
           "q": "What if I only have occasional overflow work?",
-          "a": "Our Pay As You Go module is built for exactly that — you only pay for the work you send us, with no minimum commitment and no fixed monthly cost."
+          "a": "Our Pay As You Go module is built for exactly that. You only pay for the work you send us, with no minimum commitment and no fixed monthly cost."
         },
         {
           "q": "What does onboarding look like?",
@@ -17,11 +17,11 @@
         },
         {
           "q": "Will you just follow our existing process, or suggest changes?",
-          "a": "Both, depending on what's already working. We start by understanding how you currently do things, and if we think a different approach would be more efficient, we'll suggest it — but the decision to change anything is always yours."
+          "a": "Both, depending on what's already working. We start by understanding how you currently do things, and if we think a different approach would be more efficient, we'll suggest it, but the decision to change anything is always yours."
         },
         {
           "q": "Do you work directly with our clients, or only with us?",
-          "a": "We work entirely behind the scenes, under your practice's own brand — we don't contact your end clients directly unless you specifically ask us to for a particular piece of work."
+          "a": "We work entirely behind the scenes, under your practice's own brand. We don't contact your end clients directly unless you specifically ask us to for a particular piece of work."
         },
         {
           "q": "What happens if we're not happy with a piece of work?",
@@ -30,33 +30,37 @@
       ]
     },
     {
-      "category": "Data & Security",
+      "category": "Data and security",
       "items": [
         {
           "q": "How is my data kept secure?",
-          "a": "Your data never leaves your own systems — our team logs in remotely through encrypted, secure connections and works directly inside your existing software. See our Data Security page for the full picture."
+          "a": "Your data never leaves your own systems. Our team logs in remotely through encrypted, secure connections and works directly inside your existing software. See our Data Security page for the full picture."
         },
         {
           "q": "Are you GDPR compliant?",
-          "a": "Yes — our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted."
+          "a": "Yes. Our processes are built around full GDPR compliance, covering how data is accessed, transferred, retained, and deleted."
         },
         {
           "q": "How do you keep up with changing UK compliance rules, software and best practice?",
           "a": "We treat it as an ongoing part of the job, not a one-off. Rules, software and best practice all keep moving, so we keep learning and adapting rather than sticking to one fixed way of doing things."
+        },
+        {
+          "q": "Are you insured?",
+          "a": "Yes. We carry professional indemnity insurance, so your practice isn't left exposed by a mistake on our end."
         }
       ]
     },
     {
-      "category": "Pricing & Team",
+      "category": "Pricing and team",
       "items": [
         {
           "q": "How is pricing structured?",
-          "a": "Pricing depends on the module: FTE is a fixed monthly rate per dedicated team member, Pay As You Go is priced per task or per hour, and Portfolio Management is scoped to the size and complexity of the portfolio handed over. We'll give you an exact figure once we understand your workload — book a free consultation for a personalised quote.",
+          "a": "Pricing depends on the module: FTE is a fixed monthly rate per dedicated team member, Pay As You Go is priced per task or per hour, and Portfolio Management is scoped to the size and complexity of the portfolio handed over. We'll give you an exact figure once we understand your workload. Book a free consultation for a personalised quote.",
           "placeholder": true
         },
         {
           "q": "How quickly can a new team member start?",
-          "a": "Once the engagement model is agreed and access is set up, we can typically have someone working on straightforward bookkeeping within a couple of weeks — more complex handovers, or work needing deeper training on your specific processes, can take a little longer.",
+          "a": "Once the engagement model is agreed and access is set up, we can typically have someone working on straightforward bookkeeping within a couple of weeks. More complex handovers, or work needing deeper training on your specific processes, can take a little longer.",
           "placeholder": true
         },
         {

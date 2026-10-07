@@ -1,0 +1,104 @@
+---
+// Original illustration for the How We Work page: the three engagement
+// modules (FTE, Pay As You Go, Portfolio Management) converging into one
+// "Your Practice" outcome. Same brand gradient and construction technique as
+// the other illustrations; icons inside each chip are Icon.astro's own paths
+// (bolt, sliders, layers) — the same icons already used for these three
+// modules on the page itself, so the picture and the text agree.
+---
+<svg
+  class="hero-illustration"
+  viewBox="0 0 480 420"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="proc-card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#666666" />
+      <stop offset="1" stop-color="#2e2e2e" />
+    </linearGradient>
+    <linearGradient id="proc-badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#BF9100" />
+      <stop offset="1" stop-color="#e0b82e" />
+    </linearGradient>
+  </defs>
+
+  <!-- soft backdrop shapes -->
+  <circle cx="90" cy="360" r="100" fill="#BF9100" opacity="0.07" />
+  <circle cx="420" cy="60" r="70" fill="#595959" opacity="0.06" />
+
+  <!-- converging connector lines -->
+  <g fill="none" stroke="#d9d6cc" stroke-width="2">
+    <path d="M160,72 C230,72 230,220 300,220" />
+    <path d="M160,210 C230,210 230,220 300,220" />
+    <path d="M160,348 C230,348 230,220 300,220" />
+  </g>
+
+  <!-- module chip 1: FTE -->
+  <g transform="translate(10,40)">
+    <rect width="150" height="64" rx="12" fill="#ffffff" stroke="#e6e3dc" stroke-width="1.5" />
+    <circle cx="32" cy="32" r="16" fill="#f8f0d8" />
+    <g transform="translate(21,21) scale(0.9)" stroke="#BF9100" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M13 2.5 4.5 14 H10.5 L9.5 21.5 L18.5 10 H12.5 Z" />
+    </g>
+    <text x="60" y="28" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#1c1c1c">FTE Module</text>
+    <text x="60" y="43" font-family="Inter, sans-serif" font-size="9" fill="#5c5c5c">Dedicated team</text>
+  </g>
+
+  <!-- module chip 2: Pay As You Go -->
+  <g transform="translate(10,178)">
+    <rect width="150" height="64" rx="12" fill="#ffffff" stroke="#e6e3dc" stroke-width="1.5" />
+    <circle cx="32" cy="32" r="16" fill="#f8f0d8" />
+    <g transform="translate(21,21) scale(0.9)" stroke="#BF9100" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M3.5 6 H20.5" />
+      <path d="M3.5 12 H20.5" />
+      <path d="M3.5 18 H20.5" />
+      <circle cx="15" cy="6" r="2" fill="#BF9100" stroke="none" />
+      <circle cx="8" cy="12" r="2" fill="#BF9100" stroke="none" />
+      <circle cx="17" cy="18" r="2" fill="#BF9100" stroke="none" />
+    </g>
+    <text x="60" y="28" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#1c1c1c">Pay As You Go</text>
+    <text x="60" y="43" font-family="Inter, sans-serif" font-size="9" fill="#5c5c5c">Flexible tasks</text>
+  </g>
+
+  <!-- module chip 3: Portfolio -->
+  <g transform="translate(10,316)">
+    <rect width="150" height="64" rx="12" fill="#ffffff" stroke="#e6e3dc" stroke-width="1.5" />
+    <circle cx="32" cy="32" r="16" fill="#f8f0d8" />
+    <g transform="translate(21,21) scale(0.9)" stroke="#BF9100" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M12 3 21 8 12 13 3 8 Z" />
+      <path d="M3 13 12 18 21 13" />
+    </g>
+    <text x="60" y="28" font-family="Manrope, sans-serif" font-size="12" font-weight="700" fill="#1c1c1c">Portfolio</text>
+    <text x="60" y="43" font-family="Inter, sans-serif" font-size="9" fill="#5c5c5c">Full ownership</text>
+  </g>
+
+  <!-- destination card: Your Practice -->
+  <g transform="translate(300,150)">
+    <rect x="-4" y="4" width="170" height="140" rx="14" fill="#1f1f1f" opacity="0.06" />
+    <rect width="170" height="140" rx="14" fill="#ffffff" stroke="#e6e3dc" stroke-width="1.5" />
+    <rect width="170" height="40" rx="14" fill="url(#proc-card)" />
+    <rect y="25" width="170" height="15" fill="url(#proc-card)" />
+    <text x="16" y="26" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Your Practice</text>
+    <rect x="16" y="58" width="138" height="7" rx="3.5" fill="#e4e1da" />
+    <rect x="16" y="74" width="110" height="7" rx="3.5" fill="#f1efea" />
+    <rect x="16" y="90" width="126" height="7" rx="3.5" fill="#f1efea" />
+    <rect x="16" y="106" width="80" height="7" rx="3.5" fill="#f6f5f1" />
+  </g>
+
+  <!-- floating checkmark badge on the destination card's corner (outer/inner
+       split) -->
+  <g transform="translate(452,150)">
+    <g class="hi-float hi-float--check">
+      <circle r="20" fill="url(#proc-badge)" />
+      <path d="M-9,0 L-3,6 L11,-8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </g>
+  </g>
+
+  <!-- small accent dots -->
+  <circle class="hi-float hi-float--dot" cx="230" cy="40" r="5" fill="#BF9100" opacity="0.5" />
+  <circle class="hi-float hi-float--dot" cx="200" cy="390" r="4" fill="#595959" opacity="0.4" />
+</svg>
+

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../site.config';
+import { SITE, SITE_PHONE_HREF } from '../site.config';
 
 // Real, working submission via FormSubmit.co (https://formsubmit.co) — no
 // backend or account of our own required; it forwards submissions straight
@@ -9,43 +9,53 @@ import { SITE } from '../site.config';
 // to open that email and click "Activate" or every submission after it will
 // silently fail to arrive. See LAUNCH_CHECKLIST.md.
 const formAction = `https://formsubmit.co/${SITE.email}`;
-const sent = Astro.url.searchParams.get('sent') === 'true';
+// NOTE: this page builds as static HTML (see astro.config.mjs,
+// output: 'static'), so there is no request at build time and
+// Astro.url.searchParams is always empty — it can never see the
+// `?sent=true` FormSubmit redirects back to after a real submission.
+// The banner below is shown/hidden client-side instead, from the actual
+// browser URL, in the script at the bottom of this page.
 ---
 <BaseLayout
-  title="Contact SM Global Accounting Services"
-  description="Book a free consultation or get in touch to find out how outsourcing could work for your UK accountancy practice."
+  title="Contact SM Global | Book a Free Consultation"
+  description="Book a free consultation to see how outsourced bookkeeping, VAT or statutory accounts support could work for your UK accountancy practice."
 >
-  <section class="section">
+  <section class="section hero">
     <div class="container">
       <p class="eyebrow">Contact Us</p>
-      <h1>Let's Talk About Your Workload</h1>
+      <h1>Let's talk about your workload</h1>
       <p class="lead">
-        Book a free consultation and we'll walk you through exactly how this would work for your
-        practice — no commitment required.
+        Book a free consultation and we'll explain how this would work for your practice. There is
+        no commitment.
       </p>
 
-      {sent && (
-        <p class="form-success" style="margin-top: var(--space-3);">
-          Thanks — your message is on its way. We typically respond within one business day.
-        </p>
-      )}
+      <p id="form-success" class="form-success" style="margin-top: var(--space-3);" hidden>
+        Thanks, your message is on its way. We typically respond within one business day.
+      </p>
 
-      <h2 class="visually-hidden">Ways to Reach Us</h2>
+      <h2 class="visually-hidden">Ways to reach us</h2>
       <div class="grid grid--2" style="margin-top: var(--space-3); align-items: start;">
         <div class="card">
-          <h3>Contact Details</h3>
+          <h3>Contact details</h3>
           <p>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
           <p>General enquiries: <a href={`mailto:${SITE.emailInfo}`}>{SITE.emailInfo}</a></p>
-          <p>Phone: {SITE.phone}</p>
+          {SITE.phone && <p>Phone: <a href={SITE_PHONE_HREF}>{SITE.phone}</a></p>}
           <p>Website: <a href={SITE.domain}>{SITE.domain.replace('https://', '')}</a></p>
-          <p>Office: {SITE.address}</p>
-          <p style="margin-top: var(--space-2);">We typically respond within one business day.</p>
+          <p>Location: {SITE.address}</p>
+
+          <h3 style="margin-top: var(--space-3);">What happens next</h3>
+          <ol class="steps-list">
+            <li>We reply within one business day, usually sooner.</li>
+            <li>A short call to understand your workload and current setup.</li>
+            <li>You decide if it's a fit. No obligation, no pressure.</li>
+          </ol>
         </div>
         <div class="card">
-          <h3>Send Us a Message</h3>
+          <h3>Send us a message</h3>
           <form action={formAction} method="POST">
-            <input type="hidden" name="_subject" value="New enquiry from smglobalaccounting.co.in" />
+            <input type="hidden" name="_subject" value={`New enquiry from ${SITE.domain.replace('https://', '')}`} />
             <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value={`${SITE.domain}/contact?sent=true`} />
             <div class="form-honeypot" aria-hidden="true">
               <label for="_honey">Leave this field empty</label>
@@ -54,19 +64,19 @@ const sent = Astro.url.searchParams.get('sent') === 'true';
 
             <div class="form-field">
               <label for="name">Your name</label>
-              <input type="text" id="name" name="Name" required />
+              <input type="text" id="name" name="Name" autocomplete="name" required />
             </div>
             <div class="form-field">
               <label for="practice">Practice / firm name</label>
-              <input type="text" id="practice" name="Practice name" />
+              <input type="text" id="practice" name="Practice name" autocomplete="organization" />
             </div>
             <div class="form-field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="Email" required />
+              <input type="email" id="email" name="Email" autocomplete="email" required />
             </div>
             <div class="form-field">
               <label for="phone">Phone (optional, if you'd like a call back)</label>
-              <input type="tel" id="phone" name="Phone" />
+              <input type="tel" id="phone" name="Phone" autocomplete="tel" />
             </div>
             <div class="form-field">
               <label for="need">What do you need help with?</label>
@@ -84,16 +94,38 @@ const sent = Astro.url.searchParams.get('sent') === 'true';
               <textarea id="message" name="Message" required></textarea>
             </div>
 
+            <p class="form-notice">
+              We use what you send only to reply to your enquiry. It is delivered to us by FormSubmit,
+              a form-delivery service. Read our <a href="/privacy-policy">Privacy Policy</a> for details
+              and your rights.
+            </p>
             <button type="submit" class="btn btn--primary">Send Message</button>
           </form>
         </div>
       </div>
 
-      <p class="placeholder-note" style="margin-top: var(--space-3);">
-        A dedicated booking calendar link (e.g. Calendly or TidyCal) should still replace "Book a Free
-        Consultation" linking to this page, once the practice sets one up — see
-        <code>LAUNCH_CHECKLIST.md</code>.
-      </p>
+      <!-- A dedicated booking calendar link (e.g. Calendly or TidyCal) should
+           still replace "Book a Free Consultation" linking to this page, once
+           the practice sets one up — see LAUNCH_CHECKLIST.md. Used to be a
+           visible on-page note too, which told visitors "this isn't finished
+           yet" at the exact moment they're about to book a call — moved to a
+           code comment; the page itself works fine as a booking path in the
+           meantime. -->
     </div>
   </section>
+  <script>
+    // Shows the "thanks, your message is on its way" banner when the browser
+    // actually landed here via FormSubmit's post-submit redirect (?sent=true
+    // in the real, request-time URL). This has to run client-side: the page
+    // itself is static HTML built once ahead of time, so there is no
+    // server-side "current request" for it to read that query string from.
+    try {
+      if (new URLSearchParams(window.location.search).get('sent') === 'true') {
+        document.getElementById('form-success')?.removeAttribute('hidden');
+      }
+    } catch (e) {
+      // Never block the page over this — worst case, the visitor just
+      // doesn't see the confirmation banner.
+    }
+  </script>
 </BaseLayout>

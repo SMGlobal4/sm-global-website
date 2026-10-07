@@ -1,0 +1,156 @@
+---
+import { SITE } from '../site.config';
+
+// The free-first-file offer: we complete one real piece of work, for one of
+// the practice's existing clients, free, before they commit to anything
+// ongoing. Deliberately scoped to a single client file, not the practice's
+// own workload. Terms below (one client file per new practice; bookkeeping,
+// VAT or statutory accounts specifically) are a reasonable starting draft —
+// confirm capacity and exact scope internally before treating this as a
+// final, live commercial policy. See LAUNCH_CHECKLIST.md.
+//
+// Default = the large feature block (home page). `compact` = the smaller
+// single-panel version used on the Services page.
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+{compact ? (
+  <div class="trial-compact">
+    <div>
+      <p class="eyebrow trial-compact__eyebrow">Free first file</p>
+      <h2>Your first client file is free</h2>
+      <p>
+        Pick one client from your existing portfolio. We'll complete a month of bookkeeping, a
+        quarter's VAT return, or a set of statutory accounts for that client, free of charge and with
+        no obligation to continue.
+      </p>
+    </div>
+    <a class="btn btn--dark" href={SITE.bookingUrl}>Claim Your Free First File</a>
+  </div>
+) : (
+  <div class="trial-feature">
+    <div class="trial-feature__lead">
+      <p class="trial-feature__eyebrow">Free first file</p>
+      <h2>Your first client file is free</h2>
+      <p class="trial-feature__sub">
+        Judge our work on a real file before you pay us anything.
+      </p>
+      <a class="btn btn--dark" href={SITE.bookingUrl}>Claim Your Free First File</a>
+    </div>
+    <div class="trial-feature__detail">
+      <p class="trial-feature__intro">
+        Pick one client from your existing portfolio. We'll complete one of these for that client,
+        start to finish, free of charge and with no obligation to continue:
+      </p>
+      <ul class="trial-feature__list">
+        <li>A month of bookkeeping</li>
+        <li>A quarter's VAT return</li>
+        <li>A set of statutory accounts</li>
+      </ul>
+      <p class="trial-feature__fine">
+        One complimentary client file per new practice, after a short onboarding call to set up
+        secure access to that client's records. If it isn't the right fit, there is nothing to pay
+        and nothing further to do.
+      </p>
+    </div>
+  </div>
+)}
+
+<style>
+  /* Large feature block: a pale gold-tint panel with a gold rule beside a plain
+     white panel. Gold stays an accent (the rule and the markers), not a big
+     flat fill. */
+  .trial-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: #fff;
+  }
+  .trial-feature__lead {
+    background: var(--color-secondary-light);
+    border-left: 8px solid var(--color-secondary);
+    color: var(--color-heading);
+    padding: var(--space-5) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .trial-feature__eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-secondary-text);
+    margin: 0 0 var(--space-2);
+  }
+  .trial-feature__lead h2 {
+    color: var(--color-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: var(--space-2);
+  }
+  .trial-feature__sub {
+    font-size: 1.15rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+    max-width: 30ch;
+  }
+  .trial-feature__detail {
+    padding: var(--space-5) var(--space-4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .trial-feature__intro { font-size: 1.1rem; margin-bottom: var(--space-2); }
+  .trial-feature__list {
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+  }
+  .trial-feature__list li {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-heading);
+    padding: 0.7rem 0;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .trial-feature__list li:last-child { border-bottom: 1px solid var(--color-border); }
+  .trial-feature__fine {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 58ch;
+  }
+
+  .trial-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    background: var(--color-secondary-light);
+    border-left: 6px solid var(--color-secondary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: var(--space-3);
+  }
+  .trial-compact h2 { font-size: 1.4rem; margin-bottom: var(--space-1); }
+  .trial-compact p:last-child { margin-bottom: 0; }
+  .trial-compact__eyebrow { color: var(--color-secondary-text); }
+  .trial-compact .btn { flex-shrink: 0; }
+
+  @media (max-width: 860px) {
+    .trial-feature { grid-template-columns: 1fr; }
+    .trial-feature__lead, .trial-feature__detail { padding: var(--space-4) var(--space-3); }
+    .trial-compact { flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .trial-feature__lead .btn, .trial-compact .btn { width: 100%; text-align: center; }
+  }
+</style>

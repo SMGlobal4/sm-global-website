@@ -1,41 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import IconBadge from '../components/IconBadge.astro';
 import { SITE } from '../site.config';
 ---
 <BaseLayout
   title="Careers at SM Global Accounting Services"
-  description="Join a team supporting UK accountancy practices — real client work, UK compliance training, and a clear path to progress."
+  description="Join a team supporting UK accountancy practices. Real client work, UK compliance training and a clear path to progress. Send us your CV."
+  image="/images/og-careers.png"
+  imageAlt="Careers at SM Global Accounting Services: build a career working with UK accountancy practices"
 >
-  <section class="section">
+  <section class="section hero">
     <div class="container">
       <p class="eyebrow">Careers</p>
-      <h1>Build a Career Working With UK Accountancy Practices</h1>
+      <h1>Build a career working with UK accountancy practices</h1>
       <p class="lead">
-        We're a small, hands-on team — every hire works on real UK client files from early on, not
+        We are a small, hands-on team. Every hire works on real UK client files from early on, not
         simulated training exercises.
       </p>
     </div>
   </section>
 
   <section class="section section--alt">
-    <div class="container">
-      <h2>Why Work Here</h2>
-      <div class="grid grid--3" style="margin-top: var(--space-3);">
-        <div class="card">
-          <IconBadge name="briefcase" />
+    <div class="container split">
+      <div class="split__head">
+        <h2>Why work here</h2>
+      </div>
+      <div class="text-list">
+        <div class="text-list__item">
           <h3>Real UK client exposure</h3>
-          <p>You're working inside actual UK accountancy practice files, under our current engagement, from day one — not a simulated dataset.</p>
+          <p>You work inside actual UK accountancy practice files, under our current engagement, from day one. This is not a simulated dataset.</p>
         </div>
-        <div class="card">
-          <IconBadge name="document" />
+        <div class="text-list__item">
           <h3>Structured training</h3>
-          <p>UK GAAP (FRS 102 Section 1A and FRS 105), Making Tax Digital, and hands-on time across the software our team uses — Xero, QuickBooks, IRIS, CCH, TaxCalc and more.</p>
+          <p>UK GAAP (FRS 102 Section 1A and FRS 105), Making Tax Digital, and hands-on time across the software our team uses: Xero, QuickBooks, IRIS, CCH, TaxCalc and more.</p>
         </div>
-        <div class="card">
-          <IconBadge name="users" />
+        <div class="text-list__item">
           <h3>A clear path to progress</h3>
-          <p>We're a lean team built around accountability — see <a href="/team-structure">Team Structure</a> — with room to grow from preparation work into senior review.</p>
+          <p>We are a lean team built around accountability (see <a href="/team-structure">Team Structure</a>), with room to grow from preparation work into senior review.</p>
         </div>
       </div>
     </div>
@@ -43,19 +43,20 @@ import { SITE } from '../site.config';
 
   <section class="section">
     <div class="container">
-      <h2>Open Roles</h2>
+      <h2>Open roles</h2>
       <p class="lead">
-        We don't have specific open roles listed right now, but we're always happy to hear from
+        We don't have specific open roles listed right now. We are always happy to hear from
         experienced bookkeepers and accountants who want to work on UK client files.
       </p>
       <a class="btn btn--primary" href={`mailto:${SITE.email}?subject=${encodeURIComponent('Interest in working at SM Global Accounting Services')}`}>
         Send Us Your CV
       </a>
-      <p class="placeholder-note" style="margin-top: var(--space-3); max-width: 640px;">
-        Currently routed to the general enquiries inbox. Consider a dedicated careers@ alias once
-        hiring volume warrants it, and replace this section with real listed vacancies as soon as
-        they exist — see <code>LAUNCH_CHECKLIST.md</code>.
-      </p>
+      <!-- Currently routed to the general enquiries inbox. Consider a
+           dedicated careers@ alias once hiring volume warrants it, and
+           replace this section with real listed vacancies as soon as they
+           exist — see LAUNCH_CHECKLIST.md. Used to be a visible on-page note
+           too; moved to a code comment so a prospective hire doesn't read an
+           admission that the process behind "Send Us Your CV" is informal. -->
     </div>
   </section>
 </BaseLayout>

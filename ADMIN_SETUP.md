@@ -128,6 +128,29 @@ Serve**, and **FAQs**. Change something small first (a phone digit, a
 sentence) and confirm it appears live on the site within a minute or two
 of saving — that's the whole loop working end to end.
 
+## New in Site Settings: three fields worth knowing about
+
+The **Site Settings → Business Details** form now has three extra fields,
+each with its own explanation right there in the CMS, but worth flagging
+here too:
+
+- **Booking Link** — every "Book a Free Consultation" button on the whole
+  site points to this one value. It defaults to `/contact`; paste a real
+  Calendly/TidyCal link here once you have one, and every button updates
+  immediately — no code change, no republishing needed beyond the normal
+  save.
+- **LinkedIn Company Page** — leave blank until the page exists. The
+  moment you paste a URL here, a LinkedIn icon appears in the footer and
+  the site's structured data (the invisible markup search engines read)
+  starts including it. Nothing shows or links anywhere until then.
+- **Cloudflare Web Analytics Token** — free, cookie-free visitor
+  analytics (no cookie-consent banner required, because it collects no
+  personal data). Sign in at dash.cloudflare.com with the *same* free
+  account already used for the CMS's login proxy (Step 2 above), add this
+  site under **Analytics & Logs → Web Analytics**, and paste the token it
+  gives you here. The tracking script isn't even present on the page
+  until this field has a value.
+
 ## Giving someone else access
 
 Anyone who needs to edit content just needs **write (or admin) access to

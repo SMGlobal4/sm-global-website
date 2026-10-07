@@ -1,67 +1,77 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import IconBadge from '../components/IconBadge.astro';
+import ProcessIllustration from '../components/ProcessIllustration.astro';
+import { SITE } from '../site.config';
 ---
 <BaseLayout
-  title="How We Work — Engagement Models"
-  description="Choose how you work with us — a dedicated FTE, flexible pay-as-you-go support, or full portfolio management — built around your practice's workload."
+  title="How We Work | Outsourced Accounting Engagement Models"
+  description="Choose how you work with us: a dedicated FTE, flexible pay-as-you-go support, or full portfolio management, built around your practice's workload."
 >
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Module of Work</p>
-      <h1>Choose the Way You Want to Work With Us</h1>
-      <p class="lead">
-        Every practice is different, so once we understand how you work, we'll help you pick the
-        model that fits — or mix and match as your needs change.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section--alt">
-    <div class="container">
-      <h2>We Start by Understanding Your Process</h2>
-      <p class="lead" style="max-width: 720px;">
-        Before we take on any work, we look at how you currently do things — your workflow, your
-        templates, your tools — and where a different approach would save you time. If what you're
-        already doing is the most efficient way, we keep it exactly as it is. If we think there's a
-        better way, we'll say so and suggest it — the decision to change anything is always yours.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="grid grid--3">
-        <div class="card">
-          <IconBadge name="bolt" />
-          <h3>1. FTE Module</h3>
-          <p>A fixed monthly rate for a dedicated team member (or team) allocated exclusively to your practice, following your hours and your systems — like an in-house hire, without the recruitment, screening, or training overhead, which we handle on our side. If your allocated person is on leave, we arrange buffer cover so your work doesn't stall.</p>
-          <p><strong>Best suited to:</strong> firms with a steady, ongoing volume of work who want consistent, dedicated capacity.</p>
-        </div>
-        <div class="card">
-          <IconBadge name="sliders" />
-          <h3>2. Pay As You Go</h3>
-          <p>Only pay for the work you send us, when you send it — no minimum commitment and no idle capacity.</p>
-          <p><strong>Best suited to:</strong> firms with fluctuating workloads, seasonal peaks, or overflow work, or anyone who'd like to test the relationship before committing further.</p>
-        </div>
-        <div class="card">
-          <IconBadge name="layers" />
-          <h3>3. Portfolio Management Services</h3>
-          <p>Hand over full ownership of a client portfolio — bookkeeping, accounts, tax, and everything in between — and we manage it end-to-end under your brand, reporting back on whatever schedule suits you.</p>
-          <p><strong>Best suited to:</strong> firms looking to free up significant capacity by outsourcing entire client relationships, not just individual tasks.</p>
-        </div>
+  <section class="section hero">
+    <div class="container hero__inner">
+      <div>
+        <p class="eyebrow">How we work</p>
+        <h1>Three ways to work with us</h1>
+        <p class="lead">
+          Every practice works differently. Once we understand how you work, we'll help you pick
+          one of these models, and you can mix them as your needs change.
+        </p>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <ProcessIllustration />
       </div>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>Not Sure Which Fits?</h2>
-      <p class="lead">
-        That's exactly what the introductory call is for — we'll talk it through and recommend a
-        starting point, with plenty of room to adjust as we go.
+      <h2>First, we look at how you work</h2>
+      <p class="lead" style="max-width: 720px;">
+        Before we take on any work, we look at how you do things now: your workflow, your templates
+        and your tools. If what you do already is the most efficient way, we keep it exactly as it is.
+        If we think there's a better way, we'll say so and suggest it. The decision to change anything
+        is always yours.
       </p>
-      <a class="btn btn--primary" href="/contact">Book a Free Consultation</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>The three ways to work with us</h2>
+      <ol class="numbered-steps">
+        <li>
+          <h3>Dedicated team member (FTE)</h3>
+          <div>
+            <p>A fixed monthly rate for a dedicated team member (or team) allocated only to your practice, following your hours and your systems. It works like an in-house hire, without the recruitment, screening or training, which we handle on our side. If your allocated person is on leave, we arrange buffer cover so your work doesn't stall.</p>
+            <p><strong>Best suited to:</strong> firms with a steady, ongoing volume of work who want consistent, dedicated capacity.</p>
+          </div>
+        </li>
+        <li>
+          <h3>Pay as you go</h3>
+          <div>
+            <p>You only pay for the work you send us, when you send it. There is no minimum commitment and no idle capacity.</p>
+            <p><strong>Best suited to:</strong> firms with fluctuating workloads, seasonal peaks or overflow work, or anyone who would like to test the relationship before committing further.</p>
+          </div>
+        </li>
+        <li>
+          <h3>Portfolio management</h3>
+          <div>
+            <p>You hand over full ownership of a client portfolio, including bookkeeping, accounts, tax and everything in between. We manage it end to end under your brand and report back on whatever schedule suits you.</p>
+            <p><strong>Best suited to:</strong> firms looking to free up significant capacity by outsourcing whole client relationships, not just individual tasks.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Not sure which one fits?</h2>
+      <p class="lead">
+        That is what the introductory call is for. We'll talk it through and recommend a starting
+        point, and you can change it as we go.
+      </p>
+      <a class="btn btn--primary" href={SITE.bookingUrl}>Book a Free Consultation</a>
     </div>
   </section>
 </BaseLayout>

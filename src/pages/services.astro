@@ -1,53 +1,64 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
-import IconBadge from '../components/IconBadge.astro';
+import TrialOffer from '../components/TrialOffer.astro';
 
-// Each service is its own file under src/data/services/ — see that folder's
-// README — so the site's CMS (public/admin/) can add, edit, remove and
-// reorder them without touching code. `order` controls display order.
+// Each service is its own file under src/data/ so the site's CMS (public/admin/) can add,
+// edit, remove and reorder them without touching code. `order` controls display order.
+// (The `icon` field in the JSON is no longer shown on this page; it is kept so the CMS
+// entries stay valid.)
 const serviceModules = import.meta.glob('../data/services/*.json', {
   eager: true,
   import: 'default',
-}) as Record<string, { order: number; icon: string; title: string; body: string }>;
+}) as Record<string, { order: number; icon?: string; title: string; body: string }>;
 const services = Object.values(serviceModules).sort((a, b) => a.order - b.order);
 ---
 <BaseLayout
-  title="Outsourced Accounting Services for UK Practices"
-  description="Statutory accounts, personal tax, bookkeeping, VAT, payroll and practice management support — outsourced accounting services built for UK accountancy firms."
+  title="Outsourced Bookkeeping, VAT & Statutory Accounts Services"
+  description="Bookkeeping, VAT returns, statutory accounts, payroll and company secretarial support, built specifically for UK accountancy practices."
+  image="/images/og-offer.png"
+  imageAlt="Your first client file is free: bookkeeping, VAT or statutory accounts for one of your clients, done free"
 >
-  <section class="section">
+  <section class="section hero">
     <div class="container">
-      <p class="eyebrow">Services We Offer</p>
-      <h1>The Work Your Team Doesn't Have Time For</h1>
+      <p class="eyebrow">Services</p>
+      <h1>The compliance work we take on for UK practices</h1>
       <p class="lead">
-        From statutory accounts and personal tax through to day-to-day bookkeeping, we cover the
-        full compliance workload UK practices handle for their clients — so your in-house team can
-        focus on advisory and client relationships.
+        We prepare statutory accounts and personal tax returns, and we do the day-to-day bookkeeping.
+        That leaves your own team free for advisory work and client relationships.
+      </p>
+      <p class="lead" style="margin-top: var(--space-2);">
+        Statutory accounts preparation and filing is UK company work. Bookkeeping and VAT support
+        extends to clients across the UK, US, UAE and beyond.
       </p>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="container">
-      <h2>Our Core Services</h2>
-      <div class="grid grid--2" style="margin-top: var(--space-3);">
+      <h2>What we do</h2>
+      <dl class="spec-list">
         {services.map((s) => (
-          <div class="card">
-            <IconBadge name={s.icon} />
-            <h3>{s.title}</h3>
-            <p>{s.body}</p>
+          <div class="spec-list__row">
+            <dt>{s.title}</dt>
+            <dd>{s.body}</dd>
           </div>
         ))}
-      </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <TrialOffer compact />
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <CtaBand
-        headline="Not Sure Which Services You Need?"
-        body="Tell us where the pressure points are in your practice and we'll recommend where outsourcing would help most."
+        headline="Not sure which services you need?"
+        body="Tell us where your practice is under pressure and we'll say where outsourcing would help."
       />
     </div>
   </section>

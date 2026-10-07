@@ -33,8 +33,35 @@ collections:
           - { label: Owner Name, name: ownerName, widget: string }
           - { label: Main Email, name: email, widget: string }
           - { label: General Enquiries Email, name: emailInfo, widget: string }
-          - { label: Phone Number, name: phone, widget: string }
-          - { label: Office Address, name: address, widget: string }
+          - { label: Phone Number (optional — leave blank to hide), name: phone, widget: string, required: false }
+          - { label: Location (city, country — no street address), name: address, widget: string }
+          - label: Booking Link
+            name: bookingUrl
+            widget: string
+            hint: >-
+              Where every "Book a Free Consultation" button goes. Leave as
+              /contact until you have a Calendly or TidyCal link, then paste
+              the full link (e.g. https://calendly.com/your-name) here —
+              every button site-wide updates automatically, no code change.
+          - label: LinkedIn Company Page
+            name: linkedin
+            widget: string
+            required: false
+            hint: >-
+              Paste your LinkedIn company page URL once it exists (e.g.
+              https://www.linkedin.com/company/your-page) — a LinkedIn icon
+              appears in the footer automatically. Leave blank to keep it
+              hidden.
+          - label: Cloudflare Web Analytics Token
+            name: cloudflareAnalyticsToken
+            widget: string
+            required: false
+            hint: >-
+              Free, cookie-free visitor analytics (no consent banner
+              needed) — sign in at dash.cloudflare.com (same account as the
+              editor login), add this site under Analytics & Logs → Web
+              Analytics, and paste the token it gives you here. Analytics
+              stays off until this is filled in.
 
   - name: services
     label: Services
@@ -70,6 +97,13 @@ collections:
         name: order
         widget: number
         hint: Lower numbers show first.
+      - label: Icon
+        name: icon
+        widget: select
+        options:
+          [shield, shield-check, clock, users, badge-check, document, percent,
+            book, building, briefcase, lock, server, layers, bolt, sliders, heart]
+        hint: Picks from the site's existing hand-drawn icon set — no new icons can be added here.
       - { label: Sector Name, name: name, widget: string }
       - { label: Short Note, name: note, widget: string }
 

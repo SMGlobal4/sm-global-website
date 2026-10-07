@@ -8,5 +8,14 @@ export default defineConfig({
   site: 'https://smglobalaccounting.co.in',
   output: 'static',
   trailingSlash: 'never',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Testimonials is hidden by client decision until there's something
+      // real to show (no nav link, marked noindex) — also keep it out of
+      // the sitemap so it's never handed to a crawler directly. Remove this
+      // filter, along with the noindex prop and the FOOTER_NAV entry, once
+      // real testimonials go live. See LAUNCH_CHECKLIST.md.
+      filter: (page) => !page.includes('/testimonials'),
+    }),
+  ],
 });
